@@ -1,0 +1,97 @@
+name: Deployer Laravel-skeleton sur EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.1
+        extensions: mbstring, xml, bcmath, mysql
+
+    - name: Install dependencies
+      run: |
+        composer install --no-progress --prefer-dist
+
+    - name: Prepare Laravel
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+
+    - name: Run tests
+      run: vendor/bin/phpunit
+
+    - name: Deploy to EC2
+      if: success()
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ubuntu@13.38.32.247
+        username: ubuntu
+        key: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          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
+          DHm/6u84ClkAAAAJY2ktY2Qta2V5AQI=
+          -----END OPENSSH PRIVATE KEY-----
+        script: |
+          cd /var/www/html/laravel-skeleton
+          git pull origin main
+          composer install --no-dev --optimize-autoloader
+          php artisan migrate --force
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
