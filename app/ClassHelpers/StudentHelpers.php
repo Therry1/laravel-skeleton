@@ -9,7 +9,7 @@ class StudentHelpers
     public array $schoolLevels;
     public array $choiceOptions;
     public array $formationPrices;
-    public function __construct (){
+    public function  __construct (){
 
         $this->levelsFormation = [
             1,2,3

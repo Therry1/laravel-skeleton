@@ -16,5 +16,8 @@ Route::put('/update-amount-formation/{paymentId}', [StudentController::class , '
 Route::post('/store-student-payment/{studentId}', [StudentController::class , 'store_student_payment'])->name('student.store.payment');
 Route::get('/statistic-of-system', [StudentController::class , 'statistic_of_system'])->name('system.statistic');
 
+Route::get('/view-students-by-status/{status}', [StudentController::class , 'student_by_status'])->name('system.student.by.status');
+
+
 
 

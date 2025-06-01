@@ -221,8 +221,23 @@ class StudentController extends Controller
 
         $propertiesHelpers = new StudentHelpers();
 
+        $current_date = Carbon::now();
+        $prevent_month = "";
+        $next_month = "";
+
+        if ($current_date->day > 15){
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'16');
+            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.'15');
+
+        }else{
+            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'15');
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.'16');
+        }
+
+        $current_month = $prevent_month->format('M') .' / '.$next_month->format('M');
+
         $data_payment = [
-            'current_month'     => Carbon::now()->locale('fr')->format('M'),
+            'current_month'     => $current_month,
             'tranche1'          => true,
             'tranche2'          => $request->tranche_to_paid == 2,
             'level_formation'   => $request->current_level_formation,
@@ -230,6 +245,8 @@ class StudentController extends Controller
             'stay_to_paid'      => $propertiesHelpers->formationPrices["$request->current_level_formation"] - $request->amount_paid,
             'student_id'        => $request->student_id,
             'state'             => 1,
+            'start_month'       => $prevent_month,
+            'end_month'         => $next_month,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ];
@@ -240,8 +257,130 @@ class StudentController extends Controller
     }
 
     public function statistic_of_system(){
+         /**
+            fonction de gestion des staristiques du systeme
+          */
 
-        return view('services/statistic_system');
+         /**
+            recuperation du total des inscriptions
+          */
+        $sum_inscription = Student::sum('amount_paid_for_inscription');
+
+        /**
+            recuperation du total des frais d inscription deja percu
+         */
+        $sum_payment_formation = StudentPayment::sum('amount_paid');
+
+        $current_date = Carbon::now();
+        $prevent_month = "";
+        $next_month = "";
+
+        if ($current_date->day > 15){
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'16');
+            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.'15');
+        }else{
+            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'15');
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.'16');
+        }
+
+        $current_month = $prevent_month->format('M') .' / '.$next_month->format('M');
+
+        /**
+            recuperation du total des frais d inscription du mois courent
+         */
+        $sum_payment_formation = StudentPayment::whereYear('created_at','=',Carbon::now()->year)
+            ->where('created_at','>',$prevent_month)
+            ->where('created_at','<',$next_month)
+            ->sum('amount_paid');
+
+        //dd($prevent_month , $next_month , $sum_payment_formation);
+
+        $array_students = array();
+        $students = Student::get();
+        foreach ($students as $student_item){
+            $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
+            //dd($student_item , $last_payment);
+            if (empty($last_payment) or $last_payment->start_month != $prevent_month){
+                $array_students [] = $student_item;
+            }
+        }
+
+        return view('services/statistic_system', compact('sum_inscription' , 'sum_payment_formation','sum_payment_formation','students','array_students','current_month'));
     }
+
+
+    public function student_by_status(string $status){
+        /**
+            fonction permettant de trier les etudiants en fonction de leur paiement
+         * nous commencons d abord par prendre rechercher le deut et la fin du mois
+         */
+
+        $helper = new StudentHelpers();
+
+        $current_date = Carbon::now();
+        $prevent_month = "";
+        $next_month = "";
+
+        if ($current_date->day > 15){
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'16');
+            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.'15');
+        }else{
+            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'15');
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.'16');
+        }
+        $current_month = $prevent_month->format('M') .' / '.$next_month->format('M');
+
+        $array_students = array();
+        $students = Student::get();
+
+        if ($status == 'KO'){
+
+            foreach ($students as $student_item){
+                $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
+
+                $formation_price = $student_item->level_formation;
+                if (empty($last_payment) or $last_payment->start_month != $prevent_month){
+                    $table = ['student_identity'=>$student_item ,'student_payment' => (object) ['tranche1'=>null ,'tranche2'=> null,'amount_paid'=> 0 ,'stay_to_paid'=> $helper->formationPrices["$formation_price"]]];
+                    $array_students [] = $table;
+                }
+            }
+        }elseif ($status == 'KO1'){
+
+            foreach ($students as $student_item){
+                $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
+
+                $formation_price = $student_item->level_formation;
+                if (empty($last_payment) or $last_payment->start_month != $prevent_month){
+                    $table = ['student_identity'=>$student_item ,'student_payment' => (object) ['tranche1'=>null ,'tranche2'=> null,'amount_paid'=> 0 ,'stay_to_paid'=> $helper->formationPrices["$formation_price"]]];
+                    $array_students [] = $table;
+                }
+            }
+        }elseif ($status == 'KO2'){
+
+            foreach ($students as $student_item){
+                $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
+
+                if (!empty($last_payment) and $last_payment->start_month == $prevent_month and $last_payment->tranche1  and !$last_payment->tranche2){
+                    $table = ['student_identity'=>$student_item ,'student_payment' => $last_payment];
+                    $array_students [] = $table;
+                }
+            }
+        }elseif ($status == 'OK') {
+            foreach ($students as $student_item){
+                $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
+
+                if (!empty($last_payment) and $last_payment->start_month == $prevent_month and $last_payment->tranche1  and $last_payment->tranche2){
+
+                    $table = ['student_identity'=>$student_item ,'student_payment' => $last_payment];
+                    $array_students [] = $table;
+                }
+            }
+        }
+
+        return response()->json(['data'=>$array_students , 'statusCode'=>200, 'current_month'=>$current_month]);
+    }
+
+
+
 
 }
