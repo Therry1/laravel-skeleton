@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
-      data-theme="theme-default" data-assets-path="{{ asset('v2') }}" data-template="vertical-menu-template">
+      data-theme="theme-default" data-template="vertical-menu-template">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-    <title>@yield('title') - {{ env('APP_NAME') }}</title>
+    <title>@yield('title')</title>
 
     <meta name="description" content="Système de gestion de centre de santé"/>
     <meta name="keywords" content="centre hospitalier, centre de santé">
@@ -62,7 +62,7 @@
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-        <div class="py-2 text-center w-35 " style="background-color: #1a91da">
+        <div class="py-2 text-center w-35 justify-content-between fa-mobile-android-alt " style="background-color: #1a91da">
             <div class="text-white fw-bolder display-5 mb-5">I-TECH FORMATION</div>
             <div class="mx-1">
                 <div class="mb-2">

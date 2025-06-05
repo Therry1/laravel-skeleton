@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class , 'index'])->name('home.page.view');
+
 
 Route::get('/home', [StudentController::class , 'read_student_inscripted'])->name('student.view_inscripted');
 Route::get('/create-student', [StudentController::class , 'create_student'])->name('student.create');
