@@ -93,7 +93,9 @@
         <div class="logo-container">
 {{--            <img src="{{asset('/images/logo_i_tech_formation.png')}}" alt="" width="20px">--}}
         </div>
-        <div class="nav-bar-container">
+        <div class="d-block d-md-none text-center text-white" style="font-family: Algerian; font-size: 110%">I-TECH FORMATION</div>
+        <div class="d-block d-md-none text-center"></div>
+        <div class="d-none d-md-block nav-bar-container">
             <nav class="nav-bar">
                 <ul class="menu">
                     <li class="menu-item"><a href="" class="link-item"><i class="fa fa-home-alt mx-1 text-warning"></i>Accueil</a></li>

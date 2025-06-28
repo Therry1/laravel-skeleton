@@ -275,14 +275,13 @@ class StudentController extends Controller
         $prevent_month = "";
         $next_month = "";
 
-        if ($current_date->day > 15){
-            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'16');
-            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.'15');
+        if ($current_date->day > config("constants.bornes.up")){
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.config("constants.bornes.down"));
+            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.config("constants.bornes.up"));
         }else{
-            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'15');
-            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.'16');
+            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.config("constants.bornes.up"));
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.config("constants.bornes.down"));
         }
-
         $current_month = $prevent_month->format('M') .' / '.$next_month->format('M');
 
         /**
@@ -321,17 +320,19 @@ class StudentController extends Controller
         $prevent_month = "";
         $next_month = "";
 
-        if ($current_date->day > 15){
-            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'16');
-            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.'15');
+        if ($current_date->day > config("constants.bornes.up")){
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->month .'-'.config("constants.bornes.down"));
+            $next_month = Carbon::parse($current_date->year .'-'.$current_date->addMonth()->format('m') .'-'.config("constants.bornes.up"));
         }else{
-            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.'15');
-            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.'16');
+            $next_month= Carbon::parse($current_date->year .'-'.$current_date->month .'-'.config("constants.bornes.up"));
+            $prevent_month = Carbon::parse($current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.config("constants.bornes.down"));
         }
+        $prevent_month_ref = $current_date->year .'-'.$current_date->subMonth()->format('m') .'-'.config("constants.bornes.down");
         $current_month = $prevent_month->format('M') .' / '.$next_month->format('M');
 
         $array_students = array();
         $students = Student::get();
+
 
         if ($status == 'KO'){
 
@@ -367,12 +368,16 @@ class StudentController extends Controller
             }
         }elseif ($status == 'OK') {
             foreach ($students as $student_item){
+
                 $last_payment = StudentPayment::where(['student_id'=>$student_item->id])->orderby('created_at','DESC')->first();
 
-                if (!empty($last_payment) and $last_payment->start_month == $prevent_month and $last_payment->tranche1  and $last_payment->tranche2){
+                if (!empty($last_payment)){
+                    //dd($last_payment , $last_payment->start_month , $prevent_month_ref);
+                    if (Carbon::parse($last_payment->start_month) == $prevent_month and $last_payment->tranche1  and $last_payment->tranche2){
 
-                    $table = ['student_identity'=>$student_item ,'student_payment' => $last_payment];
-                    $array_students [] = $table;
+                        $table = ['student_identity'=>$student_item ,'student_payment' => $last_payment];
+                        $array_students [] = $table;
+                    }
                 }
             }
         }

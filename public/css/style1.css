@@ -1,0 +1,288 @@
+*{
+    color: black;
+}
+
+body{
+    background-color: black;
+}
+
+.position-relative{
+    height: 235vh;
+    position: relative;
+}
+
+.sub-nav{
+    background-color: black;
+    width: 100%;
+    height: 21vh;
+    position: sticky;
+    top: 0;
+    z-index: 11;
+}
+.design{
+    background-color: orangered;
+    height: 2vh;
+}
+
+.higher-computer-science{
+    text-transform: capitalize;
+    font-size: 40px;
+    font-family: Cambria;
+    color: white;
+    padding-left: 5px;
+}
+.research-sub-nav-parent{
+    background-color: white;
+    border-radius: 50px;
+    position: relative;
+    top: 25px;
+    border: 1px solid white;
+    padding: 7px 7px 7px 10px;
+    height: 8vh;
+}
+
+.research-sub-nav{
+    background-color: white;
+    border: none;
+}
+.fa-search  {
+    color: orangered;
+    opacity: 100%;
+    position: relative;
+    bottom: 33px;
+    left: 260px ;
+}
+
+.image-slide{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 60vh;
+    padding: 10%;
+    align-items: center ;
+    justify-content: center;
+    text-align: center;
+}
+.welcom-within-center{
+    font-size: 40px;
+    font-family: Tahoma;
+    font-weight: bolder;
+    color: white;
+    text-transform: capitalize  ;
+}
+.center-name{
+    font-size: 60px;
+    font-family: Tahoma;
+    font-weight: bolder;
+    color: orangered;
+}
+
+.menu-home-container{
+    position: relative;
+}
+.menu-home{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+.item-menu-home{
+    list-style: none;
+    margin-left: 50px;
+}
+.item-menu-home > a:hover {
+    color: white;
+}
+
+.title-formation{
+    color: black;
+    font-size: 400%;
+    margin-bottom: 0;
+}
+.title-formation-bar{
+    background-color: orangered;
+    width: 10vw;
+    height: 2vh;
+}
+
+.sub-title-foramtion{
+    font-family: Algerian;
+    color: #080d28
+}
+
+.classic-diaporama-container{
+    margin-top: 3%;
+}
+
+#carossel{
+
+}
+
+/*.images{*/
+/*    display: flex;*/
+/*    animation-duration: 50s;*/
+/*    animation-name: my-images ;*/
+/*    animation-iteration-count: infinite;*/
+/*}*/
+
+/*@keyframes my-images {*/
+/*    0%{*/
+/*        transform: translateX(0) ;*/
+/*    }*/
+/*    8%{*/
+/*        transform: translateX(-300px) ;*/
+/*    }*/
+/*    16%{*/
+/*        transform: translateX(-600px) ;*/
+/*    }*/
+/*    24%{*/
+/*        transform: translateX(-900px) ;*/
+/*    }*/
+/*    32%{*/
+/*        transform: translateX(-1200px) ;*/
+/*    }*/
+/*    40%{*/
+/*        transform: translateX(-1500px) ;*/
+/*    }*/
+/*    48%{*/
+/*        transform: translateX(-1800px) ;*/
+/*    }*/
+/*    56%{*/
+/*        transform: translateX(-2100px) ;*/
+/*    }*/
+/*    64%{*/
+/*        transform: translateX(-2400px) ;*/
+/*    }*/
+/*    72%{*/
+/*        transform: translateX(-2700px) ;*/
+/*    }*/
+/*    80%{*/
+/*        transform: translateX(-3000px) ;*/
+/*    }*/
+/*    88%{*/
+/*        transform: translateX(-3300px) ;*/
+/*    }*/
+/*    96%{*/
+/*        transform: translateX(-3600px) ;*/
+/*    }*/
+/*    100%{*/
+/*        transform: translateX(0) ;*/
+/*    }*/
+/*}*/
+
+.detail-classeic-container{
+    border-radius: 20px
+}
+.detail-item{
+    box-shadow: 3px 3px 10px grey;
+    padding: 2%;
+    border-radius: 20px;
+    font-size: 20px;
+    font-family: Tahoma;
+}
+.detail-item-item{
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: Algerian;
+}
+.detail-item-separator{
+    text-align: center; padding-top: 4%; padding-bottom: 4%
+}
+
+.detail-item-separator > div {
+    width: 5vw; height: 1vh; background-color: orangered;margin-left: 35%
+}
+.radio-btn-container{
+    text-align: center;
+}
+.radio-btn-sub-container{
+    border-radius: 5px;
+    text-align: center;
+    background-color:#080d28 ;
+    padding-left: 2px;
+    padding-top: 3px;
+}
+.sub-modern-part-container{
+    position: relative;
+    height: 180vh;
+}
+.sub-modern-part-title-container{
+    position: sticky;
+    top: 0;
+    z-index: 11;
+}
+.sub-modern-part-title{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: Tahoma;
+    color: black;
+    text-transform: capitalize;
+    background-color: #080d28;
+}
+.net-work-container{
+    padding: 2%;
+}
+.net-work-img{
+    border-radius: 7px 7px 0 0;
+}
+.title-network-image{
+    font-family: Algerian;
+    font-size: 15px;
+}
+.description-network-image{
+    font-size: 20px;
+    text-align: justify;
+}
+.description-network-image{
+    font-size: 17px;
+    text-align: center;
+    color: #484747;
+}
+.title-network-image{
+    border-bottom: 5px solid #080d28;
+    color: orangered;
+}
+.down-lightnes-of-text{
+    color: #676869;
+}
+.down-lightnes-of-text2{
+    color: #c2c3c5;
+}
+.text-network-continu1{
+    display: none;
+}
+.text-network-continu2{
+    display: none;
+}
+.see-more-link-1{
+    color: orangered;
+}
+.detail-link-container{
+    padding-left: 75%;
+    color: #071142;
+    /*border: 1px solid;*/
+}
+.detail-link-1{
+    padding: 8% 13% 8% 13%;
+    border: none;
+    border-radius: 5px;
+    background-color: #1594ef;
+    font-size: 15px;
+    color: white;
+}
+.detail-link-1:hover{
+    background-color: #071142;
+    color: orangered;
+}
+
+.sub-modern-part-1{
+    /*display: none;*/
+}
+
+.sub-modern-part-2{
+    margin-bottom: 10%;
+}
