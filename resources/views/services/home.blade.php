@@ -8,7 +8,39 @@
     <link rel="stylesheet" href="{{asset('/css/style1.css')}}">
     <style>
         .image-slide{
-            background-image: url("{{asset('/images/slideimg.jpg')}}");
+            width: 100%;
+            height: 150vh;
+            background-image: url("{{asset('/images/sl3.jpg')}}");
+            background-size: cover;     /* Couvre tout le conteneur */
+            background-position: center center;  /* Centré */
+            background-repeat: no-repeat;
+            justify-content: center;
+            align-items: center;
+            padding-top: 30%;
+        }
+
+        .itech-slid{
+            font-size: 80px;
+            font-family: Algerian;
+            margin-bottom: 5%;
+            color: white;
+        }
+        .btn-inscription{
+            color: white;
+            border: 1px solid white;
+            border-radius: 25px;
+            padding: 1% 2% 1% 2% ;
+            font-weight: bolder;
+            font-size: 30px;
+            font-family: Cambria;
+        }
+        .position-relative{
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+        .footer{
+
         }
     </style>
 @endsection
@@ -50,8 +82,13 @@
             </div>
         </div>
         <div class="image-slide mb-3">
-            <div class="welcom-within-center">
+            <div class="itech-slid">I-TECH FORMATION</div>
+            <div class="welcom-within-center mt-4">
                 bienvenue sur le site de notre centre de formation
+            </div>
+            <div class="welcom-within-center mt-2 d-none d-md-block">L'excellence academique informatique</div>
+            <div class="mt-5">
+                <a href="#" class="btn-inscription">s'inscrire </a>
             </div>
         </div>
         <div class="our-formation-container">
@@ -410,7 +447,25 @@
 
 
     <footer class="footer">
+        <div class="footer-content">
+            <div class="title-footer">
 
+            </div>
+            <div class="row">
+                <div class="footer-block">
+                    <div class="footer-block-1">
+
+                    </div>
+                    <div class="footer-block-2">
+
+                    </div>
+                    <div class="footer-block-3">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </footer>
 
 @endsection
