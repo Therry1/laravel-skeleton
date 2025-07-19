@@ -4,11 +4,14 @@
 
 body{
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
-.position-relative{
-    height: 235vh;
+.section-1-first-content{
+    /*height: 235vh;*/
     position: relative;
+    flex: 1 0 auto;
 }
 
 .sub-nav{
@@ -116,7 +119,7 @@ body{
 }
 
 #carossel{
-
+    background-image: url("");
 }
 
 /*.images{*/
@@ -175,7 +178,7 @@ body{
     border-radius: 20px
 }
 .detail-item{
-    box-shadow: 3px 3px 10px grey;
+    box-shadow: 3px 3px 20px grey;
     padding: 2%;
     border-radius: 20px;
     font-size: 20px;
@@ -193,19 +196,19 @@ body{
 .detail-item-separator > div {
     width: 5vw; height: 1vh; background-color: orangered;margin-left: 35%
 }
+
+.description-classic{
+    border: 1px solid orangered;
+    border-radius: 10px;
+    padding: 30% 5% 30% 5%;
+    margin: 2% 2% 2% 2%;
+}
 .radio-btn-container{
     text-align: center;
 }
-.radio-btn-sub-container{
-    border-radius: 5px;
-    text-align: center;
-    background-color:#080d28 ;
-    padding-left: 2px;
-    padding-top: 3px;
-}
+
 .sub-modern-part-container{
     position: relative;
-    height: 180vh;
 }
 .sub-modern-part-title-container{
     position: sticky;
@@ -261,11 +264,7 @@ body{
 .see-more-link-1{
     color: orangered;
 }
-.detail-link-container{
-    padding-left: 75%;
-    color: #071142;
-    /*border: 1px solid;*/
-}
+
 .detail-link-1{
     padding: 8% 13% 8% 13%;
     border: none;
@@ -278,6 +277,8 @@ body{
     background-color: #071142;
     color: orangered;
 }
+
+.link-item:hover
 
 .sub-modern-part-1{
     /*display: none;*/

@@ -2,7 +2,7 @@
 
     return [
         'bornes'=>[
-            'up'=>29,
+            'up'=>30,
             'down'=>16
         ]
     ];

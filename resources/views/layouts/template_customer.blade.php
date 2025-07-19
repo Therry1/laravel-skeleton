@@ -69,15 +69,43 @@
 
         }
 
-        .menu-item{
-
+        .link-item:hover {
+            border-bottom: 2px solid yellow;
         }
 
         .link-item{
             color: white;
         }
 
+        .sub-menu-1{
+            display: none;
+            background-color: orangered;
+            padding: 2% 1% 2% 2%;
+            position: absolute;
+            z-index: 2;
+            width: 15vw;
+        }
 
+        .sub-link-item-1{
+            color: white;
+            margin-bottom: 2%;
+        }
+        .sub-link-item-1:hover{
+            color: white;
+            margin-bottom: 2%;
+        }
+
+        .sub-menu-item-1{
+            list-style: none;
+            margin-bottom: 3%;
+        }
+        .sub-menu-item-1:hover {
+            border-bottom: 2px solid yellow;
+        }
+
+        #formation-menu-item:hover ul{
+            display: block;
+        }
 
     </style>
 
@@ -98,12 +126,18 @@
         <div class="d-none d-md-block nav-bar-container">
             <nav class="nav-bar">
                 <ul class="menu">
-                    <li class="menu-item"><a href="" class="link-item"><i class="fa fa-home-alt mx-1 text-warning"></i>Accueil</a></li>
-                    <li class="menu-item"><a href="" class="link-item">Contact <i class="fa fa-mobile-android-alt mx-1 text-warning"></i></a></li>
-                    <li class="menu-item"><a href="" class="link-item">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a></li>
-                    <li class="menu-item"><a href="" class="link-item">S'incrire</a></li>
-                    <li class="menu-item"><a href="" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
-                    <li class="menu-item"><a href="" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
+                    <li class="menu-item"><a href="#" class="link-item"><i class="fa fa-home-alt mx-1 text-warning"></i>Accueil</a></li>
+                    <li class="menu-item"><a href="#" class="link-item">Contact <i class="fa fa-mobile-android-alt mx-1 text-warning"></i></a></li>
+                    <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                        <ul class="sub-menu-1">
+                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Réseau informatique</a></li>
+                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Développement informatique</a></li>
+                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Sécrétariat bureautique</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item"></li>
+                    <li class="menu-item"><a href="#" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
+                    <li class="menu-item"><a href="#" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
                 </ul>
             </nav>
             <div></div>
