@@ -107,6 +107,46 @@
             display: block;
         }
 
+        .sm-menu{
+            background-color: #071142;
+            padding: 2% 2%;
+        }
+
+        .link-item-sm{
+            font-size: 10px;
+            padding-bottom: 2%;
+            color: white;
+        }
+
+        .principal-menu-section{
+            padding-left: 2%;
+            border-left: 1px groove yellow;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content{
+            flex: 1 0 auto;
+        }
+        .footer{
+            flex-shrink: 0;
+            background-color: black;
+            width: 100%;
+            color: white;
+        }
+
+        .menu-footer{
+            color: #696565;
+            display: block;
+        }
+
+        .menu-footer:hover{
+            color: orangered;
+        }
+
     </style>
 
     <!-- Helpers -->
@@ -117,38 +157,184 @@
     <script src="{{ asset('v2/js/alpine.cdn.min.js') }}" defer></script>
 </head>
 <body>
-    <div class="header-container">
-        <div class="logo-container">
-{{--            <img src="{{asset('/images/logo_i_tech_formation.png')}}" alt="" width="20px">--}}
+    <div class="content">
+        <div class="header-container">
+            <div class="logo-container">
+                {{--            <img src="{{asset('/images/logo_i_tech_formation.png')}}" alt="" width="20px">--}}
+            </div>
+            <div class="d-block d-md-none text-center text-white" style="font-family: Algerian; font-size: 110%">I-TECH FORMATION</div>
+            <div class="d-block d-md-none text-center"></div>
+            <div class="d-none d-md-block nav-bar-container">
+                <nav class="nav-bar">
+                    <ul class="menu">
+                        <li class="menu-item"><a href="{{route('system.home.page.view')}}" class="link-item"><i class="fa fa-home-alt mx-1 text-warning"></i>Accueil</a></li>
+                        <li class="menu-item"><a href="{{route('system.contact.view')}}" class="link-item">Contact <i class="fa fa-mobile-android-alt mx-1 text-warning"></i></a></li>
+                        <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Nos Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                            <ul class="sub-menu-1">
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Réseau informatique</a></li>
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Développement informatique</a></li>
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Sécrétariat bureautique</a></li>
+                            </ul>
+                        </li>
+                        <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Participer<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                            <ul class="sub-menu-1">
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Payer</a></li>
+                                <li class="sub-menu-item-1"><a href="{{route('student.inscription.view')}}" class="sub-link-item-1">S'inscrire</a></li>
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Completer l'inscription</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item"><a href="#" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
+                        <li class="menu-item"><a href="{{route('user.login.view')}}" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
+                    </ul>
+
+                </nav>
+                <div></div>
+            </div>
+            <div class="d-block d-md-none float-end pt-3">
+                <a href="#" class="launch-menu-sm"><i class="fa fa-list-dots fa-3x mx-2" style="color: orangered"></i></a>
+            </div>
         </div>
-        <div class="d-block d-md-none text-center text-white" style="font-family: Algerian; font-size: 110%">I-TECH FORMATION</div>
-        <div class="d-block d-md-none text-center"></div>
-        <div class="d-none d-md-block nav-bar-container">
-            <nav class="nav-bar">
-                <ul class="menu">
-                    <li class="menu-item"><a href="#" class="link-item"><i class="fa fa-home-alt mx-1 text-warning"></i>Accueil</a></li>
-                    <li class="menu-item"><a href="#" class="link-item">Contact <i class="fa fa-mobile-android-alt mx-1 text-warning"></i></a></li>
-                    <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
-                        <ul class="sub-menu-1">
-                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Réseau informatique</a></li>
-                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Développement informatique</a></li>
-                            <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Sécrétariat bureautique</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item"></li>
-                    <li class="menu-item"><a href="#" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
-                    <li class="menu-item"><a href="#" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
-                </ul>
-            </nav>
-            <div></div>
+        <div class="sm-menu d-none" data-status="0">
+            <div class="row">
+                <div class="col-6">
+                    <div class="principal-menu-section">
+                        <h3 class="menu-sm-title">Menu principal</h3>
+                        <div class="first-menu-item-sm">
+                            <a href="{{route('system.home.page.view')}}" class="link-item-sm"><i class="fa fa-home-alt mx-1 text-warning"></i></a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="{{route('system.contact.view')}}" class="link-item-sm">Contact </a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">S'incrire</a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">A propos</a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm"><span class="text-warning">Se conecter </span><i class="fa fa-user-circle mx-2 text-warning"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="principal-menu-section">
+                        <h3 class="menu-sm-title">Menu secondaire</h3>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm"><i class="fa fa-home-alt mx-1 text-warning"></i></a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">statistique </a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">Formateurs</a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">Nos Partenaires <i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm">Nos Références </a>
+                        </div>
+                        <div class="first-menu-item-sm">
+                            <a href="" class="link-item-sm"><span class="text-warning">Nos Centres de formation</span><i class="fa fa-location-pin-lock mx-2 text-warning"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+
+        <div>
+            @yield('content')
         </div>
     </div>
 
-    <div>
-        @yield('content')
-    </div>
+    <footer class="footer px-3 mt-3">
+        <div class="text-white text-center" style=" padding-top: 5% ">
+            <h1 style="font-family: Algerian;color: orangered" >I-TECH FORMATION</h1>
+        </div>
+        <div class="row pt-2" >
+            <div class="row" style="border-bottom: 3px orangered solid">
+                <div class="col-md-3 col-sm-12 p-1 text-center">
+                    <div>
+                        <h3>CONTACT</h3>
+                    </div>
+                    <div>
+                        <div class="text-sm-center">
+                            <label for="" class="form-label">Telephone <i class="fa fa-phone" style="color: #8f9baa"></i>:</label>
+                            <label for="" class="form-label">+237  692 502 488</label>
+                        </div>
+                        <div>
+                            <label for="" class="form-label">WHATSAPP <i class="fa fa-whatsapp-square" style="color: #8f9baa"></i>:</label>
+                            <label for="" class="form-label">+237  692 502 488 / +237  690 226 447</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 p-1 text-center">
+                    <div>
+                        <h3>LOCALISATION</h3>
+                    </div>
+                    <div>
+                        <i class="fa fa-map-location-dot text-info fa-2x"></i> <span class="text-white">Garoua</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-map-location-dot fa-2x" style="color: orangered"></i> <span class="text-white">Ngaoundéré</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 p-1 text-center">
+                    <div>
+                        <h3>MENU</h3>
+                    </div>
+                    <a href="{{route('system.home.page.view')}}" class="menu-footer">Acceuil</a>
+                    <a href="{{route('system.contact.view')}}" class="menu-footer">Contact</a>
+                    <a href="#" class="menu-footer">Réreau</a>
+                    <a href="#" class="menu-footer">Developpement</a>
+                    <a href="{{route('user.login.view')}}" class="menu-footer text-white"><i class="fa fa-user-circle" style="color: orangered"></i>Se connecter</a>
+                </div>
+                <div class="col-md-3 col-sm-12 p-1 text-center">
+                    <div>
+                        <h3>ADRESSE</h3>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="" class="form-label">Adresse E-mail <i class="" style="color: #8f9baa"></i>:</label>
+                            <div class="text-white">itechformation@gmail.com</div>
+                        </div>
+                        <div>
+                            <label for="" class="form-label">Addresse:</label>
+                            <div class="text-white">univ.ndéré PACKEM-rue 47 / univ garoua SADJO-ru22</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="">
+                <div>
+                    <div class="text-center text-white pt-3">
+                        <h2>Réseau sociaux</h2>
+                    </div>
+                    <div class="text-center pt-3 pb-5">
+                        <img src="{{asset('/images/classic_part_imgs/office4.png')}}" class="img-item" alt="word">
+                        <img src="{{asset('/images/classic_part_imgs/word4.png')}}" alt="word" >
+                        <img src="{{asset('/images/classic_part_imgs/publisher.png')}}" alt="word">
+                        <img src="{{asset('/images/classic_part_imgs/ppt.png')}}" alt="word" >
+                    </div>
+                </div>
 
+            </div>
 
+        </div>
+        <div class="text-center mt-5 mb-2" style="color: #8f9baa">
+            &copy; - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+            architecto commodi cum cupiditate dolor, doloremque, ea earum eius esse ex harum neque
+            quasi rem sint voluptas? Assumenda dolor eligendi nemo.
+            architecto commodi cum cupiditate dolor, doloremque, ea earum eius esse ex harum neque
+            quasi rem sint voluptas? Assumenda dolor eligendi nemo.
+        </div>
+    </footer>
 
 
     <script src="{{ asset('v2/js/jquery.js') }}"></script>
@@ -189,5 +375,24 @@
 
     @yield('js-content')
 
+    <script>
+        $(document).ready(function (){
+            $('.launch-menu-sm').on('click' ,function (e){
+                e.preventDefault();
+
+                const sm_menu = $('.sm-menu');
+
+                if (parseInt(sm_menu.attr('data-status')) === 0){
+                    console.log('je suis la', sm_menu.attr('data-status'));
+
+                    sm_menu.removeClass('d-none');
+                    sm_menu.attr('data-status', 1);
+                }else{
+                    sm_menu.addClass('d-none');
+                    sm_menu.attr('data-status', 0);
+                }
+            })
+        })
+    </script>
 </body>
 </html>

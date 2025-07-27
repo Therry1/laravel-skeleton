@@ -1,6 +1,6 @@
 @extends('../layouts/template_customer')
 
-@section('title')      @endsection
+@section('title') I-Tech accueil    @endsection
 
 
 @section('css-content')
@@ -9,21 +9,6 @@
     <style>
         .sub-nav{
             z-index: 0;
-        }
-        .sm-menu{
-            background-color: #071142;
-            padding: 2% 2%;
-        }
-
-        .link-item-sm{
-            font-size: 10px;
-            padding-bottom: 2%;
-            color: white;
-        }
-
-        .principal-menu-section{
-            padding-left: 2%;
-            border-left: 1px groove yellow;
         }
 
         .image-slide{
@@ -57,11 +42,6 @@
         .btn-inscription:hover {
             color: white;
             background-color: orangered;
-        }
-        .position-relative{
-            flex-grow: 1;
-            flex-shrink: 0;
-            flex-basis: auto;
         }
 
         #carossel{
@@ -136,20 +116,6 @@
             margin: 15% 20% 10% 20%;
         }
 
-        .section-2{
-            /*border: 10px orangered solid;*/
-            position: absolute;
-        }
-
-
-        .section-2{
-            padding: 7% 0 0 0;
-        }
-
-
-        .footer{
-
-        }
     </style>
 @endsection
 
@@ -160,7 +126,9 @@
 
             <div class="our-formation-container">
                 <div class="section-1-first-content">
-                    <div class= "sub-nav float-none float-sm-end">
+
+
+                    <div class= "sub-nav  d-md-block d-none float-none float-sm-end">
                         <div class="row d-block d-sm-none">
                             <div class="col-4"></div>
                             <div class="col-4 design"></div>
@@ -188,64 +156,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="d-block d-sm-none float-end pt-3">
-                            <a href="#" class="launch-menu-sm"><i class="fa fa-list-dots fa-3x mx-2" style="color: orangered"></i></a>
-                        </div>
                     </div>
-                    <div class="sm-menu d-none" data-status="0">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="principal-menu-section">
-                                    <h3 class="menu-sm-title">Menu principal</h3>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm"><i class="fa fa-home-alt mx-1 text-warning"></i></a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">Contact </a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">S'incrire</a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">A propos</a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm"><span class="text-warning">Se conecter </span><i class="fa fa-user-circle mx-2 text-warning"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="principal-menu-section">
-                                    <h3 class="menu-sm-title">Menu secondaire</h3>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm"><i class="fa fa-home-alt mx-1 text-warning"></i></a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">statistique </a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">Formateurs</a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">Nos Partenaires <i class="fa fa-chevron-down mx-1 text-warning"></i></a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm">Nos Références </a>
-                                    </div>
-                                    <div class="first-menu-item-sm">
-                                        <a href="" class="link-item-sm"><span class="text-warning">Nos Centres de formation</span><i class="fa fa-location-pin-lock mx-2 text-warning"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
 
-                        </div>
-                    </div>
+
 
 
                     <div class="image-slide mb-3">
@@ -255,7 +168,7 @@
                         </div>
                         <div class="welcom-within-center mt-2 d-none d-md-block">L'excellence academique informatique</div>
                         <div class="mt-5">
-                            <a href="#" class="btn-inscription">s'inscrire </a>
+                            <a href="{{route('student.inscription.view')}}" class="btn-inscription">s'inscrire </a>
                         </div>
                     </div>
 
@@ -281,7 +194,7 @@
                                         <div class="row pt-5" style="margin-bottom: 10%">
                                             <div class="col-md-4 col-sm-12">
                                                 <div class="">
-                                                    <a href="#" class="py-3 px-2 btn-inscription">Nous contacter <i class="fa fa-mobile-android mx1"></i> </a>
+                                                    <a href="{{route('system.contact.view')}}" class="py-3 px-2 btn-inscription">Nous contacter <i class="fa fa-mobile-android mx1"></i> </a>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-sm-12 ">
@@ -635,59 +548,27 @@
 
             </div>
 
-        </div>
-    </section>
 
-    <section class="section-2">
-        <div>
-            <h1 class="title-formation">Quelques Témoignages</h1>
-            <div class="title-formation-bar"></div>
-        </div>
-        <div class="temoignage-container">
-            <div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            div
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
-
-                    </div>
-                    <div class="col-md-3">
+            <div class="pt-5 pb-2">
+                <div class="">
+                    <h1 class="title-formation">Autres</h1>
+                    <div class="title-formation-bar"></div>
+                </div>
+                <div class="text-center py-3" style="font-size: 12px">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cum eveniet ut! Accusamus cum dolorum ea explicabo facilis laboriosam rem rerum vel.
+                </div>
+                <div class="flyer-container" style="background-color: #eac8be;padding: 5% 10%;">
+                    <div class="flyer-container-1">
+                        <a target="_blank" href="{{asset('/images/flyers/flyer6.png')}}">
+                            <img src="{{asset('/images/flyers/flyer6.png')}}" alt="flyer" width="400vw" height="auto">
+                        </a>
 
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endsection
 
@@ -711,21 +592,6 @@
                 if ($(this).is(':checked') && $(this).val() === 'development'){
                     network_content.addClass('d-none');
                     development_content.removeClass('d-none');
-                }
-            })
-            $('.launch-menu-sm').on('click' ,function (e){
-                e.preventDefault();
-
-                const sm_menu = $('.sm-menu');
-
-                if (parseInt(sm_menu.attr('data-status')) === 0){
-                    console.log('je suis la', sm_menu.attr('data-status'));
-
-                    sm_menu.removeClass('d-none');
-                    sm_menu.attr('data-status', 1);
-                }else{
-                    sm_menu.addClass('d-none');
-                    sm_menu.attr('data-status', 0);
                 }
             })
         });

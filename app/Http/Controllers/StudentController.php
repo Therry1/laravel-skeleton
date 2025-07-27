@@ -385,7 +385,10 @@ class StudentController extends Controller
         return response()->json(['data'=>$array_students , 'statusCode'=>200, 'current_month'=>$current_month]);
     }
 
+    public function inscriptionView (){
 
+        return view('student.inscription');
+    }
 
 
 }

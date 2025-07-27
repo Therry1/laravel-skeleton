@@ -31,6 +31,22 @@
     <link rel="stylesheet" href="{{ asset('v2/css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('v2/css/sweetalert2.css') }}"/>
 
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content{
+            flex: 1 0 auto;
+        }
+
+        .footer{
+            background-color: #45494f;
+            color: white;
+        }
+    </style>
+
     @yield('other-css')
 
     <!-- Helpers -->
@@ -43,9 +59,18 @@
 <body>
 
 
-    @yield('content')
+
+    <div class="content">
+        @yield('content')
+    </div>
 
 
+
+    <footer class="footer">
+        <div class="text-center">
+            &copy; - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate debitis ea et excepturi, exercitationem id illo minus nobis perspiciatis placeat quisquam sunt totam ullam? Consequatur facilis ipsam mollitia praesentium reiciendis?
+        </div>
+    </footer>
     <script src="{{ asset('v2/js/jquery.js') }}"></script>
     <script src="{{ asset('v2/js/popper.js') }}"></script>
     <script src="{{ asset('v2/js/bootstrap.js') }}"></script>
