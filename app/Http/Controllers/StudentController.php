@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\ClassHelpers\StudentHelpers;
+use App\Models\City;
+use App\Models\FormationCity;
+use App\Models\FormationLevel;
+use App\Models\FormationOption;
+use App\Models\FormationRound;
+use App\Models\PaymentMode;
+use App\Models\SchoolFaculty;
+use App\Models\SchoolLevel;
 use App\Models\Student;
 use App\Models\StudentPayment;
 use Carbon\Carbon;
@@ -385,10 +393,28 @@ class StudentController extends Controller
         return response()->json(['data'=>$array_students , 'statusCode'=>200, 'current_month'=>$current_month]);
     }
 
+
+
     public function inscriptionView (){
 
-        return view('student.inscription');
+        $cities = City::all();
+        $formation_cities = FormationCity::all();
+        $school_faculties = SchoolFaculty::orderby('faculty_name','asc')->get();
+        $school_levels = SchoolLevel::all();
+        $formation_options = FormationOption::all();
+        $formation_levels = FormationLevel::all();
+        $payment_modes = PaymentMode::all();
+
+        return view('student.inscription', compact('cities','formation_cities','school_faculties','school_levels','formation_options','formation_levels','payment_modes'));
     }
 
 
+    public function checkRound ($level_id){
+
+        $round = FormationRound::where(['round_level'=>$level_id])->first();
+        if (!$round)
+            return response()->json(['status_code'=>500,'message'=> 'Aucune vague de formation disponible pour ce niveau']);
+
+        return response()->json(['status_code'=>200, 'data'=>$round]);
+    }
 }

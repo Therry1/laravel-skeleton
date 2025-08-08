@@ -184,14 +184,14 @@
                             </ul>
                         </li>
                         <li class="menu-item"><a href="#" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
-                        <li class="menu-item"><a href="{{route('user.login.view')}}" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
+                        <li class="menu-item"><a href="{{route('login')}}" class="link-item "><span class="display-5 text-warning">Se conecter </span><i class="fa fa-user-circle fa-2x mx-2 text-warning"></i></a></li>
                     </ul>
 
                 </nav>
                 <div></div>
             </div>
             <div class="d-block d-md-none float-end pt-3">
-                <a href="#" class="launch-menu-sm"><i class="fa fa-list-dots fa-3x mx-2" style="color: orangered"></i></a>
+                <a href="#" class="launch-menu-sm">☰</a>
             </div>
         </div>
         <div class="sm-menu d-none" data-status="0">
@@ -215,7 +215,7 @@
                             <a href="" class="link-item-sm">A propos</a>
                         </div>
                         <div class="first-menu-item-sm">
-                            <a href="" class="link-item-sm"><span class="text-warning">Se conecter </span><i class="fa fa-user-circle mx-2 text-warning"></i></a>
+                            <a href="{{route('login')}}" class="link-item-sm"><span class="text-warning">Se conecter </span><i class="fa fa-user-circle mx-2 text-warning"></i></a>
                         </div>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                     <a href="{{route('system.contact.view')}}" class="menu-footer">Contact</a>
                     <a href="#" class="menu-footer">Réreau</a>
                     <a href="#" class="menu-footer">Developpement</a>
-                    <a href="{{route('user.login.view')}}" class="menu-footer text-white"><i class="fa fa-user-circle" style="color: orangered"></i>Se connecter</a>
+                    <a href="{{route('login')}}" class="menu-footer text-white"><i class="fa fa-user-circle" style="color: orangered"></i>Se connecter</a>
                 </div>
                 <div class="col-md-3 col-sm-12 p-1 text-center">
                     <div>
@@ -373,7 +373,7 @@
     <script src="{{ asset('v2/js/custom-sweetalert2.js') }}"></script>
 
 
-    @yield('js-content')
+    @yield('other-js')
 
     <script>
         $(document).ready(function (){

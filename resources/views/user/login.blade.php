@@ -23,19 +23,34 @@
                         <i class="fa fa-square-plus" style="color: orangered"></i>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <form action="">
+                        <form action="{{route('user.login.handle')}}" method="POST">
+                            @csrf
+                            @method('post')
+
+                            @if(session('error'))
+                                <div class="text-white small fst-italic" style="background-color: #ec0808">{{session('error')}}</div>
+                            @endif
                             <div>
                                 <div>
                                     <label for="">E-mail:</label>
-                                    <input type="email" class="form-control" placeholder="e-mail@gmail.com">
+                                    <input type="email" class="form-control" placeholder="e-mail@gmail.com" name="email">
+                                    @error('email')
+                                        <span class="text-danger font-bold small">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="">Nom d'utilisateur:</label>
-                                    <input type="text" class="form-control" placeholder="user name">
+                                    <input type="text" class="form-control" placeholder="user name" name="user_name">
+                                    @error('user_name')
+                                    <span class="text-danger font-bold small">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="" class="">Mot de passe:</label>
-                                    <input type="password" class="form-control">
+                                    <input type="password" class="form-control" name="password">
+                                    @error('password')
+                                    <span class="text-danger font-bold small">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="mt-2">
                                     <button class="btn btn-success w-100 fw-bolder">se connecter</button>

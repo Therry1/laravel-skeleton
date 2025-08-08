@@ -32,18 +32,42 @@
     <link rel="stylesheet" href="{{ asset('v2/css/sweetalert2.css') }}"/>
 
     <style>
+
         body{
+            background-color: white;
+
+        }
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease;
+            z-index: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .content{
+        .sidebar-content{
             flex: 1 0 auto;
         }
 
-        .footer{
-            background-color: #45494f;
-            color: white;
+        #sidebar.hide {
+            margin-left: -250px;
+        }
+
+        #main-content {
+            transition: all 0.3s ease;
+            margin-left: 250px;
+            background-color: white;
+            height: 100vh;
+        }
+
+        #main-content.full {
+            margin-left: 0;
         }
     </style>
 
@@ -59,18 +83,43 @@
 <body>
 
 
+        <div class="content">
+            <div id="sidebar" class="hide p-3">
+                <div class="sidebar-content">
+                    <h4>I-Tech Formation</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-home-alt mx-1"></i>Accueil</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-circle mx-1"></i>Profil</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-circle-right mx-1"></i>Permissions</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>Faire une inscription</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-money-bill mx-1"></i>Effectuer un paiement</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-group mx-1"></i>Liste des étudiants</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-search mx-1"></i>Rechercher</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-notes-medical mx-1"></i>Saisir les notes</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-money-bill-transfer mx-1"></i>Retrait d'argent</a></li>
+                        <li class="nav-item"><a href="{{route('system.home.page.view')}}" class="nav-link text-white"><i class="fa fa-rotate-back mx-1"></i>Retour au site</a></li>
+                    </ul>
+                </div>
+                <div class="">
+                    <div class="bg-danger text-white text-center fw-bolder">
+                        <a href="#" style="color: white;"> <i class="fa fa-sign-out"></i> Se déconnecter</a>
+                    </div>
+                </div>
 
-    <div class="content">
-        @yield('content')
-    </div>
+            </div>
 
-
-
-    <footer class="footer">
-        <div class="text-center">
-            &copy; - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate debitis ea et excepturi, exercitationem id illo minus nobis perspiciatis placeat quisquam sunt totam ullam? Consequatur facilis ipsam mollitia praesentium reiciendis?
+            <!-- Contenu principal -->
+            <div id="main-content" class="full p-4">
+                <button id="toggleBtn" class="fw-bolder text-white border-white" style="border-radius: 50px; background-color: #1a91da"><i class="fa fa-chevron-right"></i></button>
+                <span style="position: fixed; top: 2% ; right: 2%"><i class="fa fa-user-circle fa-3x mx-1"></i> <span class="text-black fw-bolder border-bottom">Therry</span></span>
+                <div>
+                    @yield('content')
+                </div>
+            </div>
         </div>
-    </footer>
+
+
     <script src="{{ asset('v2/js/jquery.js') }}"></script>
     <script src="{{ asset('v2/js/popper.js') }}"></script>
     <script src="{{ asset('v2/js/bootstrap.js') }}"></script>
@@ -106,6 +155,16 @@
     <script src="{{ asset('v2/js/customtoast.js') }}"></script>
     <script src="{{ asset('v2/js/custom-sweetalert2.js') }}"></script>
 
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('hide');
+            mainContent.classList.toggle('full');
+        });
+    </script>
 
     @yield('other-js')
 

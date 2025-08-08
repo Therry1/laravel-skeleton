@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('student_payments', function (Blueprint $table) {
             $table->id();
-            $table->string('current_month',128);
-            $table->integer('level_formation');
-            $table->boolean('tranche1')->default(true);
+            $table->boolean('tranche1')->default(false);
             $table->boolean('tranche2')->default(false);
             $table->integer('amount_paid');
-            $table->integer('stay_to_paid');
-            $table->tinyInteger('state');
+            $table->integer('remaining_amount');
             $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('round_id')->constrained('formation_rounds');
+            $table->foreignId('month_id')->constrained('formation_months');
+            $table->tinyInteger('state')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

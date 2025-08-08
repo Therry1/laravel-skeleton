@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('student_payments', function (Blueprint $table) {
-            $table->dateTime('start_month')->nullable();
-            $table->dateTime('end_month')->nullable();
+        Schema::create('formation_levels', function (Blueprint $table) {
+            $table->id();
+            $table->string('level_label',32);
+            $table->tinyInteger('state')->default(1);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('StudentPayment', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('formation_levels');
     }
 };
