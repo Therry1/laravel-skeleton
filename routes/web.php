@@ -20,8 +20,13 @@ Route::prefix('/user')->group(function (){
 
 
 Route::prefix('/student')->group(function (){
-    Route::get('/inscription', [StudentController::class , 'inscriptionView'])->name('student.inscription.view');
+    Route::get('/inscription', [StudentController::class , 'preinscriptionView'])->name('student.inscription.view');
+    Route::post('/inscription', [StudentController::class , 'preinscriptionStore'])->name('student.preinscription.store');
     Route::get('/check-round/{level_id}',[StudentController::class,'checkRound'])->name('student.inscription.check.round');
+    Route::post('/check-student-exists',[StudentController::class,'checkStudentForInscription'])->name('student.inscription.check.exist');
+    Route::post('/formation-student-registration',[StudentController::class,'formationStudentRegistration'])->name('formation.student.registration');
+    Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[StudentController::class,'setBadge']);
+
 
 });
 
@@ -33,23 +38,5 @@ Route::middleware(['auth'])->group(function (){
 
     });
 });
-
-
-Route::get('/home', [StudentController::class , 'read_student_inscripted'])->name('student.view_inscripted');
-Route::get('/create-student', [StudentController::class , 'create_student'])->name('student.create');
-Route::get('/edit-student/{studentId}', [StudentController::class , 'edit_student'])->name('student.edit');
-Route::get('/detail-student/{studentId}', [StudentController::class , 'detail_student'])->name('student.details');
-Route::post('/store-student', [StudentController::class , 'store_student'])->name('student.store');
-Route::put('/update-student/{studentId}', [StudentController::class , 'update_student'])->name('student.update');
-Route::get('/current-amount-inscription/{studentId}', [StudentController::class , 'amount_inscription'])->name('read.current_amount_inscription');
-Route::get('/current-amount-formation/{paymentId}', [StudentController::class , 'amount_formation'])->name('read.current_amount_formation');
-Route::put('/update-amount-inscription/{studentId}', [StudentController::class , 'update_amount_inscription'])->name('update.current_amount_inscription');
-Route::put('/update-amount-formation/{paymentId}', [StudentController::class , 'update_amount_formation'])->name('update.current_amount_formation');
-Route::post('/store-student-payment/{studentId}', [StudentController::class , 'store_student_payment'])->name('student.store.payment');
-Route::get('/statistic-of-system', [StudentController::class , 'statistic_of_system'])->name('system.statistic');
-
-Route::get('/view-students-by-status/{status}', [StudentController::class , 'student_by_status'])->name('system.student.by.status');
-
-
 
 

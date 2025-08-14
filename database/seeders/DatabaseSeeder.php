@@ -27,12 +27,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             PaymentModeSeeder::class,
+            CitySeeder::class,
             FormationCitySeeder::class,
             SchoolFacultySeeder::class,
             SchoolLevelSeeder::class,
             FormationLevelSeeder::class,
             FormationOptionSeeder::class,
             FormationMonthSeeder::class,
+            FormationModeSeeder::class,
         ]);
     }
 }

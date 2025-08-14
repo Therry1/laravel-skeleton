@@ -162,7 +162,7 @@
             <div class="logo-container">
                 {{--            <img src="{{asset('/images/logo_i_tech_formation.png')}}" alt="" width="20px">--}}
             </div>
-            <div class="d-block d-md-none text-center text-white" style="font-family: Algerian; font-size: 110%">I-TECH FORMATION</div>
+            <div class="d-block d-md-none text-center text-white" style="font-family: Algerian; font-size: 210%">I-TECH FORMATION</div>
             <div class="d-block d-md-none text-center"></div>
             <div class="d-none d-md-block nav-bar-container">
                 <nav class="nav-bar">
@@ -174,13 +174,14 @@
                                 <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Réseau informatique</a></li>
                                 <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Développement informatique</a></li>
                                 <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Sécrétariat bureautique</a></li>
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1" data-bs-toggle="modal" data-bs-target="#FormationInscriptionModal">S'incrire à une formation</a></li>
                             </ul>
                         </li>
                         <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Participer<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
                             <ul class="sub-menu-1">
                                 <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Payer</a></li>
-                                <li class="sub-menu-item-1"><a href="{{route('student.inscription.view')}}" class="sub-link-item-1">S'inscrire</a></li>
-                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Completer l'inscription</a></li>
+                                <li class="sub-menu-item-1"><a href="{{route('student.inscription.view')}}" class="sub-link-item-1">Se pré-inscrire</a></li>
+                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Completer la pré-inscription</a></li>
                             </ul>
                         </li>
                         <li class="menu-item"><a href="#" class="link-item">A propos<i class="fa fa-circle-info mx-1 text-warning"></i></a></li>
@@ -191,7 +192,7 @@
                 <div></div>
             </div>
             <div class="d-block d-md-none float-end pt-3">
-                <a href="#" class="launch-menu-sm">☰</a>
+                <a href="#" class="launch-menu-sm" style="font-size: 40px">☰</a>
             </div>
         </div>
         <div class="sm-menu d-none" data-status="0">
@@ -373,7 +374,7 @@
     <script src="{{ asset('v2/js/custom-sweetalert2.js') }}"></script>
 
 
-    @yield('other-js')
+    @yield('js-content')
 
     <script>
         $(document).ready(function (){

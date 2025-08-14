@@ -84,7 +84,7 @@
             ' : ''}}">
             <a href="#" class="small" id="new-year-btn"  >NOUVELLE ANNEE <i class="fa fa-plus-circle mx-1"></i></a>
         </div>
-        <div class="row">
+        <div class="row {{ $exist ? '' : 'd-none' }} home-sub-admin-page">
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -189,6 +189,8 @@
                                 icon: "success"
                             });
 
+                            $('.home-sub-admin-page').removeClass('d-none');
+
                             $('.new-year-container').css({
                                 'padding-top': '7%',
                                 'transition' : 'transform 1s ease',
@@ -196,6 +198,8 @@
                                 'padding-bottom': '4%',
                                 'border-bottom' : '3px solid purple'
                             });
+
+
                         }else if(response.status_code === 400){
                             Swal.fire({
                                 text: response.message,
