@@ -84,7 +84,7 @@
 
 
         <div class="content">
-            <div id="sidebar te" class="hide p-3">
+            <div id="sidebar" class="hide p-3">
                 <div class="sidebar-content">
                     <h4>I-Tech Formation</h4>
                     <ul class="nav flex-column">
