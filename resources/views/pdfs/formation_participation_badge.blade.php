@@ -73,7 +73,7 @@
     <section style="margin-top: 4%; text-align: center">
         <div style="width: 80%; text-align: justify;padding-left: 6%">
             Par le present document, nous attestons que monsieur <span style="font-weight: bolder; text-transform: uppercase">{{$formation_participation->student->name}}</span> est autorisé à
-            entré dans la salle de cours situé à <span style="font-weight: bolder">MULTI-SOLT</span> pour suivre le cours de code <span style="font-weight: bolder">{{$formation_participation->formationRound->round_code}}</span>
+            entré dans la salle de cours situé à <span style="font-weight: bolder">NGAOUNDERE</span> pour suivre le cours de code <span style="font-weight: bolder">{{$formation_participation->formationRound->round_code}}</span>
         </div>
     </section>
     <section style="margin-top: 4%">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('role_label',32);
             $table->string('role_code',32);
+            $table->string('role_category',32);
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
             $table->softDeletes();

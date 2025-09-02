@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             FormationOptionSeeder::class,
             FormationMonthSeeder::class,
             FormationModeSeeder::class,
+            UserRolePermissionSeeder::class,
         ]);
     }
 }

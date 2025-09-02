@@ -12,15 +12,68 @@
         }
 
         .image-slide{
+            position: relative;
             width: 100%;
-            height: 150vh;
-            background-image: url("{{asset('/images/sl3.jpg')}}");
-            background-size: cover;     /* Couvre tout le conteneur */
-            background-position: center center;  /* Centré */
-            background-repeat: no-repeat;
-            justify-content: center;
+            height: 150vh;           /* ajuste la hauteur à ton besoin */
+            overflow: hidden;
+
+            {{--background-image: url("{{asset('/images/p3.jpg')}}");--}}
+            {{--background-size: cover;     /* Couvre tout le conteneur */--}}
+            {{--background-position: center center;  /* Centré */--}}
+            {{--background-repeat: no-repeat;--}}
+            {{--justify-content: center;--}}
+            {{--align-items: center;--}}
+            {{--padding-top: 30%;--}}
+        }
+
+        /* Chaque "slide" est une couche absolue avec une image de fond */
+        .image-slide .slide {
+            position: absolute;
+            inset: 0;               /* top/right/bottom/left = 0 */
+
+            background-size: cover; /* couvre toute la zone */
+            background-position: center;
+            opacity: 0;
+            animation: fade 100s infinite;
+            z-index: 0;
+        }
+
+        /* 4 images, chacune décale son animation pour se relayer */
+        .image-slide .slide:nth-child(1) {
+            background-image: url("{{asset('/images/p1.jpg')}}");
+            animation-delay: 0s;
+        }
+        .image-slide .slide:nth-child(2) {
+            background-image: url("{{asset('/images/p2.jpg')}}");
+            animation-delay: 25s;
+        }
+        .image-slide .slide:nth-child(3) {
+            background-image: url("{{asset('/images/p3.jpg')}}");
+            animation-delay: 50s;
+        }
+        .image-slide .slide:nth-child(4) {
+            background-image: url("{{asset('/images/p4.jpg')}}");
+            animation-delay: 75s;
+        }
+
+        /* Animation: chaque slide apparaît 20% du temps, puis disparaît */
+        @keyframes fade {
+            0%   { opacity: 0; }
+            5%   { opacity: 1; }
+            25%  { opacity: 1; }  /* reste visible un moment */
+            30%  { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .image-slide .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            padding-top: 30%;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
         }
 
         .itech-slid{
@@ -33,7 +86,7 @@
             color: white;
             border: 1px solid white;
             border-radius: 25px;
-            padding: 1% 2% 1% 2% ;
+            padding: 3% 6% 3% 6%;
             font-weight: bolder;
             font-size: 30px;
             font-family: Cambria;
@@ -71,8 +124,9 @@
         }
 
         .detail-link-container{
-            padding-left: 60%;
+            text-align: center;
             color: #071142;
+            padding-top: 10%;
             /*border: 1px solid;*/
         }
 
@@ -112,7 +166,6 @@
 
         .description-devellopment-icon{
             border-radius: 50px;
-            padding: 15%;
             margin: 15% 20% 10% 20%;
         }
 
@@ -289,36 +342,33 @@
 
     <section class="section-1">
         <div class="">
-
             <div class="our-formation-container">
                 <div class="section-1-first-content">
 
 
-                    <div class= "sub-nav  d-md-block d-none float-none float-sm-end">
-                        <div class="row d-block d-sm-none">
-                            <div class="col-4"></div>
-                            <div class="col-4 design"></div>
-                            <div class="col-4"></div>
-                        </div>
+                    <div class="sub-nav  d-md-block d-none float-none float-sm-end">
+
                         <div class="d-none d-md-block">
                             <div class="row">
-                                <div class="col-3 higher-computer-science">
-                                    Higher Computer science
-                                </div>
-                                <div class="col-6 menu-home-container">
+                                <div class="col d-sm-block d-none">
                                     <ul class="menu-home">
-                                        <li class="item-menu-home"><a href="#"><i class="fa fa-phone text-warning mx-1"></i>Nos Partenaires </a></li>
+                                        <li class="item-menu-home"><a href="#" style=""><i class="fa fa-phone text-warning mx-1"></i>Nos Partenaires </a></li>
                                         <li class="item-menu-home"><a href="#"><i class="fa fa-home-user text-warning mx-1"></i>Nos Centres de formation</a></li>
                                         <li class="item-menu-home"><a href="#"><i class="fa fa-list-check text-warning mx-1"></i>Nos Références</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-3 research-sub-nav-parent-2">
-                                    <div class="text-white">Rechercher ...
-                                        <input type="text" placeholder="Rechercher..." class="research-sub-nav form-control"> <i class="fa fa-search fa-2x iconee"></i>
-                                    </div>
-                                    {{--                <div class="research-sub-nav-parent">--}}
-                                    {{--                </div>--}}
+                                <div class="col research-sub-nav-parent-2 py-2">
+                                    <div class="research-input-container px-5">
+                                        <div class="" style="border-radius: 50px; display: flex; justify-content: center">
+                                            <div  style="border-radius:50px 0 0 50px; background-color:white; width: 12%">
 
+                                            </div>
+                                            <input type="text" placeholder="Rechercher ... " class="research-input">
+                                            <div style="border-radius: 0 50px 50px 0; border: 1px solid orangered">
+                                                <i class="fa fa-search fa-2x mx-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -328,13 +378,21 @@
 
 
                     <div class="image-slide mb-3">
-                        <div class="itech-slid">I-TECH FORMATION</div>
-                        <div class="welcom-within-center mt-4">
-                            bienvenue sur le site de notre centre de formation
-                        </div>
-                        <div class="welcom-within-center mt-2 d-none d-md-block">L'excellence academique informatique</div>
-                        <div class="mt-5">
-                            <a href="{{route('student.inscription.view')}}" class="btn-inscription">s'inscrire </a>
+
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+
+                        <div class="content">
+                            <div class="itech-slid" style="z-index: 100">I-TECH FORMATION</div>
+                            <div class="welcom-within-center mt-4">
+                                bienvenue sur le site de notre centre de formation
+                            </div>
+                            <div class="welcom-within-center mt-2 d-none d-md-block">L'excellence academique informatique</div>
+                            <div class="mt-5">
+                                <a href="{{route('student.inscription.view')}}" class="btn-inscription">s'inscrire </a>
+                            </div>
                         </div>
                     </div>
 
@@ -510,18 +568,30 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         Administration réseau
                                     </div>
-                                    <div class="description-network-image">
+                                    <div class="text-justify description-network-image">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text">
-                                                possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span><a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            L'administration réseau consiste à gérer et maintenir les systèmes de communication d'une organisation, en assurant leur bon fonctionnement, leur sécurité et leur performance. Cela implique la configuration, le dépannage, la surveillance et l'optimisation des réseaux. L'administrateur réseau, quant
+                                            <span class="down-lightnes-of-text">
+                                                à lui, est la personne
+                                            </span> <span class="down-lightnes-of-text2"> chargée de ces tâches.</span><a target="_blank" href="https://openclassrooms.com/fr/paths/1048-administrateur-systemes-reseaux-et-cybersecurite" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-network-icon">
-                                            <i class="fa fa-network-wired text-white" style="font-size: 80px"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-network-wired mx-1" style="color: orangered"></i></h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Surveillance et maintenance:</h4>
+                                                Il surveille en permanence l'état du réseau, identifie les problèmes potentiels et effectue les opérations de maintenance pour garantir sa performance et sa fiabilité
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Gestion des utilisateurs:</h4>
+                                                Il gère les comptes utilisateurs, les droits d'accès et les politiques de sécurité pour s'assurer que seuls les utilisateurs autorisés peuvent accéder aux ressources du réseau.
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Dépannage:</h4>
+                                                En cas de problème, l'administrateur réseau doit être capable d'identifier rapidement la cause de la panne et de la résoudre efficacement.
+                                            </div>
                                         </div>
+
                                         <div class="detail-link-container mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://openclassrooms.com/fr/paths/1048-administrateur-systemes-reseaux-et-cybersecurite" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -534,18 +604,31 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         cyber-sécurité
                                     </div>
-                                    <div class="description-network-image">
+                                    <div class="text-justify description-network-image">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span> <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            Une cyberattaque désigne un effort intentionnel visant à voler, exposer, modifier, désactiver ou détruire des données, des applications ou d'autres actifs par le biais d'un accès non autorisé à un réseau,
+
+                                            <span class="down-lightnes-of-text">
+                                                un système informatique ou un
+                                            </span> <span class="down-lightnes-of-text2">
+                                                appareil numérique
+                                            </span> <a href="https://www.fortinet.com/fr/resources/cyberglossary/types-of-cyber-attacks" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-network-icon-2">
-                                            <i class="fa fa-key text-white" style="font-size: 80px"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-shield-alt mx-1" style="color: orangered"></i></h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Protection des systèmes et des réseaux:</h4>
+                                                Cela implique l'utilisation de pare-feu, de systèmes de détection d'intrusion, de logiciels antivirus et de mesures de sécurité pour protéger les infrastructures informatiques contre les accès non autorisés et les logiciels malveillants.
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Protection des données:</h4>
+                                                La cybersécurité vise à garantir la confidentialité, l'intégrité et la disponibilité des données, en utilisant des techniques de cryptage, de sauvegarde et de contrôle d'accès
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Gestion des risques:</h4>
+                                                Les organisations doivent évaluer les risques liés aux cybermenaces, mettre en place des mesures de sécurité appropriées et élaborer des plans de réponse aux incidents pour faire face aux attaques.                                             </div>
                                         </div>
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://www.fortinet.com/fr/resources/cyberglossary/types-of-cyber-attacks" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -558,18 +641,26 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         système
                                     </div>
-                                    <div class="description-network-image">
+                                    <div class="text-justify description-network-image">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span>. <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            Un système informatique est un ensemble de composants matériels (ordinateurs, serveurs, etc.) et logiciels (système d'exploitation, applications) qui travaillent ensemble pour
+                                            <span class="down-lightnes-of-text"> exécuter des programmes</span>
+                                            <span class="down-lightnes-of-text2"> et traiter des données.</span>. <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-network-icon-3">
-                                            <i class="fa fa-network-wired text-white" style="font-size: 80px"></i>
-                                        </div>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-shield-alt mx-1" style="color: orangered"></i></h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Conception et déploiement:</h4>
+                                                Un plan de déploiement informatique est un ensemble d'opérations coordonnées visant à introduire une application logicielle ou un système dans son environnement prévu. Cela inclut l'installation, la configuration, les tests et les modifications nécessaires pour garantir un déploiement réussi.
 
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Maintenance et surveillance:</h4>
+                                                La maintenance et la surveillance des systèmes informatiques regroupent les actions de suivi, de mise à jour et de réparation proactives pour assurer le fonctionnement optimal, la performance et la sécurité du matériel, des logiciels et des réseaux. Le monitoring, ou supervision, permet d'alerter les techniciens en cas d'anomalies détectées 24h/24 et 7j/7, tandis que la maintenance
+                                                préventive inclut des mises à jour, des sauvegardes et des contrôles réguliers pour anticiper et éviter les pannes
+                                            </div>
+                                        </div>
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -582,18 +673,31 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         hacking-éthique
                                     </div>
-                                    <div class="description-network-image">
+                                    <div class="text-justify description-network-image">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span>. <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            Le hacking éthique, ou piratage éthique, en sécurité informatique, décrit l'activité de hacking lorsqu'elle n'est pas malveillante.
+
+                                            Les mêmes pratiques (tel que le piratage, l'exploitation de faille, le contournement des limitations) peuvent être utilisées par des white hats (français : chapeaux blancs) avec un objectif bienveillant (analyse, information, protection…) ou des black hats (français : chapeaux noirs)
+                                            <span class="down-lightnes-of-text"> avec un objectif malveillant (destruc</span>
+                                            <span class="down-lightnes-of-text2"> tion, prise de contrôle, vol...).</span>. <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-network-icon-4">
-                                            <i class="fa fa-mask-face text-white" style="font-size: 80px"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-shield-alt mx-1" style="color: orangered"></i></h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Missions du hacker éthique:</h4>
+                                                Le hacking ou piratage éthique décrit l’activité de hacking lorsqu’elle n’est pas malveillante. Ainsi, le piratage éthique désigne le processus par lequel un hacker bienveillant également baptisé “white hat” accède à un réseau ou un système informatique avec les mêmes outils et ressources que son confrère malveillant, “black hat” , à la différence qu’il y est autorisé.
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Responsabilités du hacker éthique:</h4>
+                                                S’introduire légalement dans les systèmes et les réseaux d’une entreprise nécessite pour tout hacker éthique qui se respecte de se conformer à un code de conduite et à une discipline stricte. C’est aussi le cas pour pour les Media Exploitation Analysts, qui aident les entreprises et institutions à trouver des preuves dans les nombreux fichiers et logs fournis par les machines.
+
+                                                Avant d’évaluer la sécurité du réseau d’une entreprise, le hacker éthique sera soumis à une procédure d’accréditation scrupuleuse.
+
+                                            </div>
                                         </div>
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -618,18 +722,27 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         développement web
                                     </div>
-                                    <div class="description-network-image-2">
+                                    <div class="text-justify description-network-image-2">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span> <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            Le développement web englobe la conception, la création et la gestion de sites web et d'applications en ligne. Il comprend à la fois le développement front-end (ce que l'utilisateur voit) et le développement back-end (la logique et les bases de données). En d'autres termes, c'est le <span class="down-lightnes-of-text">  processus de transformation d'idées en </span> <span class="down-lightnes-of-text2"> sites web fonctionnels et attrayants.</span> <a href="https://www.digitalschool.paris/guide/developpement-web/definition/" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-devellopment-icon">
-                                            <i class="fa fa-sitemap fa-3x" style="color: orangered"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION</h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Développement Front-end:</h4>
+
+                                                Se concentre sur l'interface utilisateur (UI) et l'expérience utilisateur (UX). Les développeurs front-end utilisent des langages tels que HTML, CSS et JavaScript pour créer des pages web visuellement attrayantes et interactives.
+                                                <h4 style="font-family: 'Comic Sans MS' ; color: orangered">Développement Back-end:</h4>
+
+                                                S'occupe de la partie invisible du site web, comme les serveurs, les bases de données et la logique applicative. Les développeurs back-end utilisent des langages comme PHP, Python, ou Ruby pour gérer les interactions entre la base de données et l'interface utilisateur.
+
+                                            </div>
                                         </div>
+
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://www.digitalschool.paris/guide/developpement-web/definition/" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -642,18 +755,27 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         développement mobile
                                     </div>
-                                    <div class="description-network-image2">
-                                        <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span> <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                    <div class="text-justify description-network-image2">
+                                        <div class="text-justify px-2">
+                                            Le développement mobile est l'ensemble des activités liées à la création et à la publication d'applications pour appareils mobiles, tels que les smartphones et les tablettes. Ces applications peuvent être natives, c'est-à-dire conçues pour un système d'exploitation spéc  <span class="down-lightnes-of-text"> ifique (Android ou iOS), ou hybrides</span> <span class="down-lightnes-of-text2"> , fonctionnant sur plusieurs plateformes.</span> <a target="_blank" href="https://www.aquilapp.fr/ressources/projet-mobile/quest-ce-que-le-developpement-mobile" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-devellopment-icon">
-                                            <i class="fa fa-computer fa-3x" style="color: orangered"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION</h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Applications natives:</h4>
+
+                                                Développées spécifiquement pour un système d'exploitation (Android ou iOS), elles offrent une performance et une intégration optimales avec l'apparei
+                                                <h4 style="font-family: 'Comic Sans MS' ; color: orangered">Applications hybrides:</h4>
+
+                                                Créées avec des technologies web (HTML, CSS, JavaScript) et encapsulées dans une native app, elles peuvent être utilisées sur plusieurs plateformes.
+                                                <h4 style="font-family: 'Comic Sans MS' ; color: orangered">outils:</h4>
+                                                Java (Android), Swift (iOS), React Native
+                                            </div>
                                         </div>
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://www.aquilapp.fr/ressources/projet-mobile/quest-ce-que-le-developpement-mobile" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -666,18 +788,23 @@
                                     <div class="text-center fw-bolder text-capitalize px-2 title-network-image">
                                         management de projet
                                     </div>
-                                    <div class="description-network-image2">
+                                    <div class="text-justify description-network-image2">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span> <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            La gestion de projet informatique désigne le processus de gestion, planification et développement des projets informatiques. Les chefs de projet peuvent s’accompagner d’un logiciel de gestion de projet informatique pour les cinq phases du cycle de vie de la gestion de <span class="down-lightnes-of-text"> projet et ainsi accomplir des tâches </span> <span class="down-lightnes-of-text2"> complexes plus efficacement.</span> <a href="https://asana.com/fr/resources/it-project-management" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-devellopment-icon">
-                                            <i class="fa fa-assistive-listening-systems fa-3x" style="color: orangered"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION</h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Le rôle du chef de projet informatique:</h4>
+
+                                                En tant que chef de projet informatique, vous devez savoir comment communiquer avec tous les membres de votre entreprise. Vous travaillerez en étroite collaboration avec les membres du service informatique, mais vous pourrez également avoir à échanger avec d’autres services au sujet du travail de votre équipe.
+                                                L’objectif de tout projet informatique est de livrer un produit fonctionnel qui répond aux besoins du client Les chefs de projet informatique sont les premiers points de contact en cas de problème.
+                                            </div>
                                         </div>
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://asana.com/fr/resources/it-project-management" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -692,16 +819,25 @@
                                     </div>
                                     <div class="description-network-image2">
                                         <div class="px-2">
-                                            veniam? Ad dicta dolorem exercitationem inventore ipsa iure numquam <span class="down-lightnes-of-text"> possimus sapiente soluta</span> <span class="down-lightnes-of-text2"> totam! Magni mo
-                                        llitia</span> <a href="#" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
+                                            Une base de données est un ensemble structuré de données organisées de manière à être facilement consultées, gérées et mises à jour. Elle sert de référentiel centralisé pour stocker et accéder à l'information, que ce soit pour une entreprise, <span class="down-lightnes-of-text"> une organisation ou une</span> <span class="down-lightnes-of-text2"> application spécifique. </span> <a href="https://webusers.i3s.unice.fr/~nlt/cours/licence/sgbd1/sgbd1_cours.pdf" class="fw-bolder see-more-link-1">voir plus <i class="fa fa-circle-plus"></i></a>
                                         </div>
 
-                                        <div class="description-devellopment-icon">
-                                            <i class="fa fa-database fa-3x" style="color: orangered"></i>
+                                        <div style="padding-top: 11%">
+                                            <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-database mx-1" style="color: orangered"></i></h3>
+                                            <div>
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Système de gestion de base de données (SGBD):</h4>
+                                                Un logiciel (comme MySQL, Oracle, PostgreSQL) permet d'interagir avec la base de données, d'effectuer des requêtes et de gérer les données.
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Langage de requête structuré (SQL):</h4>
+                                                Le langage standard pour interagir avec les bases de données relationnelles, permettant d'effectuer des recherches, des mises à jour, etc
+
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Types de bases de données:</h4>
+                                                Il existe différents types de bases de données, tels que les bases de données relationnelles (SQL), les bases de données NoSQL (clé-valeur, document, etc.), les bases de données spatiales, etc.
+                                            </div>
                                         </div>
 
                                         <div class="detail-link-container  mx-2 my-5">
-                                            <a href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
+                                            <a target="_blank" href="https://webusers.i3s.unice.fr/~nlt/cours/licence/sgbd1/sgbd1_cours.pdf" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -969,7 +1105,7 @@
 
                              if (response.status_code === 200){
 
-                                 window.location.replace(`/student/set-badge/${response.data.student.id}/${response.data.round.id}`);
+                                 window.location.replace(`/student/set-badge/${response.data.student.id}/${response.data.round.id}/${response.data.participation.id}`);
                              }
                          },
                          error: function(response){

@@ -88,9 +88,9 @@
                 <div class="sidebar-content">
                     <h4>I-Tech Formation</h4>
                     <ul class="nav flex-column">
-                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-home-alt mx-1"></i>Accueil</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-circle mx-1"></i>Profil</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
+                        <li class="nav-item"><a href="{{route('system.admin.start')}}" class="nav-link text-white"><i class="fa fa-home-alt mx-1"></i>Accueil</a></li>
+                        <li class="nav-item"><a href="{{route('user.profile.view')}}" class="nav-link text-white"><i class="fa fa-user-circle mx-1"></i>Profil</a></li>
+                        <li class="nav-item"><a href="{{route('user.register.view')}}" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-circle-right mx-1"></i>Permissions</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>Faire une inscription</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-money-bill mx-1"></i>Effectuer un paiement</a></li>

@@ -26,4 +26,9 @@ class FormationParticipation extends Model
         return $this->belongsTo(FormationLevel::class, 'formation_level_id');
     }
 
+    public function formationCity (){
+
+        return $this->belongsTo(FormationCity::class, 'formation_city_id');
+    }
+
 }

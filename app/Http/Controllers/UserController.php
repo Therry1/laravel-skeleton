@@ -28,22 +28,23 @@ class UserController extends Controller
 
         try {
             $validated = $request->validate([
-                'name'      => 'required',
+                'name'      => 'required|max:21',
                 'user_name' => 'required',
                 'email'     => 'required|email|unique:users',
                 'tel'       => 'required|min:9|max:9',
                 'password'  => 'required|min:8'
             ],[
-                'name'      => 'le nom est requis',
-                'user_name' => 'le nom d\'utilisateur est requis',
-                'email.required'     => 'l\'email est requis',
-                'email.email'     => 'l\'entrée n\'est pas un email valide',
-                'email.unique'     => 'cet email existe déja dans le système',
-                'tel.required'       => 'le numero de téléphone est requis',
-                'tel.min'       => 'le numero de telephone doit avoir 9 chiffres',
-                'tel.max'       => 'le numero de telephone doit avoir 9 chiffres',
-                'password.required'  => 'un mot de passe est requis',
-                'password'  => 'le mot de passe doit avoir minimum 8 charactères'
+                'name.required'         => 'le nom est requis',
+                'name.max'              => 'le nom doit etre de maximum 21 lettres. veuillez abréger si necessaire',
+                'user_name'             => 'le nom d\'utilisateur est requis',
+                'email.required'        => 'l\'email est requis',
+                'email.email'           => 'l\'entrée n\'est pas un email valide',
+                'email.unique'          => 'cet email existe déja dans le système',
+                'tel.required'          => 'le numero de téléphone est requis',
+                'tel.min'               => 'le numero de telephone doit avoir 9 chiffres',
+                'tel.max'               => 'le numero de telephone doit avoir 9 chiffres',
+                'password.required'     => 'un mot de passe est requis',
+                'password'              => 'le mot de passe doit avoir minimum 8 charactères'
             ]);
 
 //            if ($validated->fails()){
@@ -101,5 +102,12 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login');
 
+    }
+
+
+
+    public function userProfil (){
+
+        return view('user.user_profile');
     }
 }

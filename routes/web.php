@@ -27,7 +27,6 @@ Route::prefix('/student')->group(function (){
     Route::post('/formation-student-registration',[StudentController::class,'formationStudentRegistration'])->name('formation.student.registration');
     Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[StudentController::class,'setBadge']);
 
-
 });
 
 Route::middleware(['auth'])->group(function (){
@@ -35,6 +34,10 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/',[SystemController::class,'index'])->name('system.admin.start');
         Route::get('/new-year',[SystemController::class,'addYear'])->name('year.admin.new');
         Route::post('/new-round',[SystemController::class,'addRound'])->name('round.admin.new');
+    });
+
+    Route::prefix('/user')->group(function (){
+        Route::get('/profile', [UserController::class , 'userProfil'])->name('user.profile.view');
 
     });
 });

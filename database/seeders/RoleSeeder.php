@@ -14,9 +14,12 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            ['role_label'=>'super administrateur', 'role_code'=>'SUPADMIN', 'state'=>1],
-            ['role_label'=>'administrateur', 'role_code'=>'ADMIN', 'state'=>1],
-            ['role_label'=>'autre utilisateur', 'role_code'=>'OTHER', 'state'=>1],
+            ['role_label' => 'SUPER ADMINISTRATEUR' , 'role_code' => 'SUP_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'SUB SUPER ADMINISTRATEUR' , 'role_code' => 'SUB_SUP_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'ADMINISTRATEUR' , 'role_code' => 'ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'SUB ADMINISTRATEUR' , 'role_code' => 'SUB_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'UTILISATEUR' , 'role_code' => 'USER', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'ENSEIGNANT' , 'role_code' => 'ENS', 'role_category' => 'proffessionnel' , 'state' => 1],
         ];
 
         Role::insert($roles);

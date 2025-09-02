@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('formation_mode_id')->constrained('formation_modes');
             $table->foreignId('formation_option_id')->constrained('formation_options');
             $table->foreignId('formation_level_id')->constrained('formation_levels');
+            $table->foreignId('formation_city_id')->constrained('formation_cities');
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });

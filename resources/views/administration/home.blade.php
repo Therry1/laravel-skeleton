@@ -2,7 +2,7 @@
 
 
 @section('title')
-
+    Admin-home
 @endsection
 @section('other-css')
 

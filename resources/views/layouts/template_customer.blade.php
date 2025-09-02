@@ -56,7 +56,7 @@
         }
 
         .nav-bar-container{
-            width: 60%;
+            width: 75%;
             justify-content: center;
         }
         .nav-bar{
@@ -69,13 +69,19 @@
 
         }
 
-        .link-item:hover {
-            border-bottom: 2px solid yellow;
-        }
-
         .link-item{
             color: white;
         }
+
+        .link-item:hover {
+            border-bottom: 2px solid yellow;
+            position: relative;
+            top: -7px;
+            color: yellow;
+            font-size: 20px;
+        }
+
+
 
         .sub-menu-1{
             display: none;
@@ -98,9 +104,12 @@
         .sub-menu-item-1{
             list-style: none;
             margin-bottom: 3%;
+            text-align: center;
         }
         .sub-menu-item-1:hover {
             border-bottom: 2px solid yellow;
+            background-color: #080d28 ;
+            padding: 2% 0
         }
 
         #formation-menu-item:hover ul{
@@ -171,13 +180,13 @@
                         <li class="menu-item"><a href="{{route('system.contact.view')}}" class="link-item">Contact <i class="fa fa-mobile-android-alt mx-1 text-warning"></i></a></li>
                         <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Nos Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
                             <ul class="sub-menu-1">
-                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Réseau informatique</a></li>
-                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Développement informatique</a></li>
-                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Sécrétariat bureautique</a></li>
-                                <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1" data-bs-toggle="modal" data-bs-target="#FormationInscriptionModal">S'incrire à une formation</a></li>
+                                <li class="sub-menu-item-1"><a href="https://homepages.laas.fr/adoncesc/STAPS/Informatique/Introductionreseaux1-2.pdf" class="sub-link-item-1">Réseau informatique</a></li>
+                                <li class="sub-menu-item-1"><a href="http://the.file.free.fr/1er-ann%C3%A9e%20BTS%20IG/Developpement_applications_informatiques%20_genie_logiciel_3932/Cours%202%20(Access)/83932TGPA0209.pdf" class="sub-link-item-1">Développement informatique</a></li>
+                                <li class="sub-menu-item-1"><a href="http://daryane1.free.fr/cours/pdf/general.pdf" class="sub-link-item-1">Sécrétariat bureautique</a></li>
                             </ul>
                         </li>
-                        <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Participer<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
+                        <li class="menu-item"><a href="#" class="link-item" data-bs-toggle="modal" data-bs-target="#FormationInscriptionModal">S'incrire à une formation</a></li>
+                        <li class="position-relative menu-item" id="formation-menu-item"><a href="#" class="link-item">Paiement<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
                             <ul class="sub-menu-1">
                                 <li class="sub-menu-item-1"><a href="#" class="sub-link-item-1">Payer</a></li>
                                 <li class="sub-menu-item-1"><a href="{{route('student.inscription.view')}}" class="sub-link-item-1">Se pré-inscrire</a></li>
@@ -210,7 +219,7 @@
                             <a href="" class="link-item-sm">Formation<i class="fa fa-chevron-down mx-1 text-warning"></i></a>
                         </div>
                         <div class="first-menu-item-sm">
-                            <a href="" class="link-item-sm">S'incrire</a>
+                            <a href="{{route('student.inscription.view')}}" class="link-item-sm">S'incrire</a>
                         </div>
                         <div class="first-menu-item-sm">
                             <a href="" class="link-item-sm">A propos</a>
