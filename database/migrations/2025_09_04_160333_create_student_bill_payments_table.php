@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_payments', function (Blueprint $table) {
+        Schema::create('student_bill_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('amount_to_paid');
-            $table->integer('number_months');
+            $table->integer('month_number');
+            $table->string('month_label');
+            $table->boolean('tranche1')->default(false);
+            $table->boolean('tranche2')->default(false);
+            $table->integer('amount_paid');
+            $table->integer('remaining_amount');
             $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('student_payment_id')->constrained('student_payments');
             $table->foreignId('round_id')->constrained('formation_rounds');
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_payments');
+        Schema::dropIfExists('student_bill_payments');
     }
 };

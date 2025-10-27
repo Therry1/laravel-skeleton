@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\MoneyController;
+use App\Http\Controllers\Admin\PreInscriptionController;
+use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SystemController;
+use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +29,8 @@ Route::prefix('/student')->group(function (){
     Route::post('/check-student-exists',[StudentController::class,'checkStudentForInscription'])->name('student.inscription.check.exist');
     Route::post('/formation-student-registration',[StudentController::class,'formationStudentRegistration'])->name('formation.student.registration');
     Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[StudentController::class,'setBadge']);
+    Route::post('/payment/check-student-exists/',[MoneyController::class,'checkStudentForPayment'])->name('payment.student.check.exist');
+
 
 });
 
@@ -34,12 +39,29 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/',[SystemController::class,'index'])->name('system.admin.start');
         Route::get('/new-year',[SystemController::class,'addYear'])->name('year.admin.new');
         Route::post('/new-round',[SystemController::class,'addRound'])->name('round.admin.new');
+        Route::get('/view-round/{round_id}',[SystemController::class,'viewRound'])->name('system.admin.round.view');
+
+
+
+    });
+    Route::prefix('/admin')->group(function (){
+        Route::prefix('/user')->group(function (){
+            Route::get('/profile', [UserController::class , 'userProfil'])->name('user.profile.view');
+        });
+
+        Route::prefix('/student')->group(function (){
+            Route::get("/pre-inscription",[PreInscriptionController::class , 'viewPreInscription'])->name('system.admin.student.view.pre_inscription');
+            Route::get('/formation-inscription', [PreInscriptionController::class , 'viewFormationParticipation'])->name('system.admin.student.formation.participation');
+            Route::post('/store-pre-inscription', [AdminStudentController::class , 'preinscriptionStore'])->name('system.admin.student.pre_inscription.store');
+            Route::get('/check-round/{level_id}',[AdminStudentController::class,'checkRound'])->name('system.admin.student.inscription.check.round');
+            Route::post('/check-student-exists',[AdminStudentController::class,'checkStudentForInscription'])->name('system.admin.student.inscription.check.exist');
+            Route::post('/formation-student-registration',[AdminStudentController::class,'formationStudentRegistration'])->name('system.admin.student.formation.student.registration');
+            Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[AdminStudentController::class,'setBadge']);
+            Route::post('/payment/check-student-exists/',[AdminStudentController::class,'checkStudentForPayment'])->name('system.admin.student.student.check.exist');
+
+        });
     });
 
-    Route::prefix('/user')->group(function (){
-        Route::get('/profile', [UserController::class , 'userProfil'])->name('user.profile.view');
-
-    });
 });
 
 

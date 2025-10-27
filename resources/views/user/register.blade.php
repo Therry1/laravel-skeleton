@@ -34,7 +34,7 @@
                                 @endif
                             </div>
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
+                                <div class="col-12 col-md-12">
                                     <label for="">Nom et prénom:</label>
                                     <input type="text" class="form-control name" name="name"  id="name" placeholder="first and lastname example">
                                     <div class="text-danger small d-none" id="error_name"></div>
@@ -42,7 +42,7 @@
                                     <span class="text-danger font-bold small">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-12 col-md-6">
                                     <label for="">Tel:</label>
                                     <input type="tel" class="form-control tel" name="tel" id="tel" placeholder="699887766">
                                     <div class="text-danger small d-none" id="error_tel"></div>
@@ -50,7 +50,7 @@
                                     <span class="text-danger font-bold small">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-12 col-md-6">
                                     <label for="">E-mail:</label>
                                     <input type="email" class="form-control email" name="email" id="email" placeholder="e-mail@gmail.com">
                                     <div class="text-danger small d-none" id="error_email"></div>
@@ -58,7 +58,7 @@
                                     <span class="text-danger font-bold small">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-12 col-md-6">
                                     <label for="">Nom d'utilisateur:</label>
                                     <input type="text" class="form-control user_name" name="user_name" id="user_name" placeholder="user name">
                                     <div class="text-danger small d-none" id="error_user_name"></div>
@@ -66,7 +66,7 @@
                                     <span class="text-danger font-bold small">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-12 col-md-6">
                                     <label for="" class="">Mot de passe:</label>
                                     <input type="password" class="form-control password" name="password" id="password">
                                     <div class="text-danger small d-none" id="error_password"></div>

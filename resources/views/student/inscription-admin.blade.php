@@ -1,4 +1,4 @@
-@extends('../layouts/template_customer')
+@extends('../layouts/template_admin')
 
 @section('title')  Enregistrement    @endsection
 
@@ -203,12 +203,10 @@
 @section('js-content')
     <script>
         $(document).ready(function (){
-
             $('.select2').select2({
-                width: '100%',
-                allowClear: true,
-                dropdownParent: $('#subscription_form'),
-            });
+                width: "100%",
+                allowClear: true
+            })
 
             $('#formation_level').on('change', function (){
 

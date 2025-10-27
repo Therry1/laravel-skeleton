@@ -34,7 +34,7 @@ class PreinscriptionRequest extends FormRequest
             "relative_number" => "required|int|digits:9",
             "payment_mode" => "required|int",
             "output_account" => "required|int|digits:9",
-            "amount_paid" => "required|int"
+            "amount_paid" => "required|int|min:1000"
         ];
     }
 

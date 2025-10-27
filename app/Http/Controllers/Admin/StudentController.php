@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\ClassHelpers\StudentHelpers;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\FormationRegistrationRequest;
-use App\Http\Requests\InscriptionRequest;
 use App\Http\Requests\PreinscriptionRequest;
 use App\Models\City;
 use App\Models\FormationCity;
@@ -21,11 +20,10 @@ use App\Models\StudentBillPayment;
 use App\Models\StudentPayment;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use http\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Monolog\Formatter\FormatterInterface;
 
 class StudentController extends Controller
 {
@@ -72,6 +70,7 @@ class StudentController extends Controller
                     "faculty_id"            => $request->input('school_faculty'),
                     "school_level_id"       => $request->input('school_level'),
                     "payment_mode_id"       => $request->input('payment_mode'),
+                    "register_by"           => Auth::id(),
                     "state"                 => 1,
                 ]);
             });
@@ -101,15 +100,10 @@ class StudentController extends Controller
     public function checkStudentForInscription (Request $request){
 
         $validator = Validator::make($request->all(),[
-            'identifier' => 'required',
-            'password' => 'required',
-            'email'  => 'required|email'
+            'identifier' => 'required'
         ],[
             'identifier.required' => 'le matricule est requis',
             'identifier.digits' => 'le matricule est invalide',
-            'password.required' => 'le mot de passe est requis',
-            'email.required' => 'l\'email est requis',
-            'email.email' => 'l\'email n\'est pas conforme',
         ]);
 
         if ($validator->fails()){
@@ -121,10 +115,8 @@ class StudentController extends Controller
         }
 
         $student_exist = Student::where([
-            'email'=>$request->input('email'),
-            'password'=>$request->input('password'),
             'matricule'=>$request->input('identifier'),
-        ])->exists();
+        ])->first();
 
         if(!$student_exist)
             return response()->json([
@@ -140,14 +132,15 @@ class StudentController extends Controller
 
 
         return response()->json([
-            'status_code'           => 200,
-            'message'               => 'success',
+            'status_code'           =>  200,
+            'message'               =>  'success',
 
-            'payment_modes'         =>$payment_modes,
-            'formation_cities'      =>$formation_cities,
-            'formation_options'     =>$formation_options,
-            'formation_levels'      =>$formation_levels,
-            'formation_modes'       =>$formation_modes,
+            'student'               =>  $student_exist,
+            'payment_modes'         =>  $payment_modes,
+            'formation_cities'      =>  $formation_cities,
+            'formation_options'     =>  $formation_options,
+            'formation_levels'      =>  $formation_levels,
+            'formation_modes'       =>  $formation_modes,
         ],200);
 
     }
@@ -155,13 +148,13 @@ class StudentController extends Controller
     public function formationStudentRegistration (FormationRegistrationRequest $request){
 
         if ($request->input('amount_paid') != config('constants.amount.inscription_level-'.$request->input('formation_level'))){
-            return response()->json(['status_code' => 400,'message' => 'le montant à payer doit etre de'.config('constants.amount.inscription_level-'.$request->input('formation_level'))]);
+            return response()->json([
+                'status_code' => 400,
+                'message' => 'le montant à payer doit etre de'.config('constants.amount.inscription_level-'.$request->input('formation_level'))]);
         }
 
         $student = Student::where([
-            'email'=>$request->input('email'),
-            'password'=>$request->input('password'),
-            'matricule'=>$request->input('identifier'),
+            'matricule'=>$request->input('identifier')
         ])->first();
 
         if(!$student)
@@ -185,52 +178,52 @@ class StudentController extends Controller
         try {
             $financial_reference = '';
             DB::beginTransaction();
-                $formation_participation = FormationParticipation::create([
-                    'amount_paid'               => $request->input('amount_paid'),
-                    'remaining_amount'          => config('constants.amount.inscription_level-'.$request->input('formation_level')) - $request->input('amount_paid'),
-                    'financial_reference'       => $financial_reference,
-                    'student_id'                => $student->id,
-                    'round_id'                  => $round->id,
-                    'payment_mode_id'           => $request->input('payment_mode'),
-                    'formation_city_id '        => $request->input('formation_city'),
-                    'formation_mode_id'         => $request->input('formation_mode'),
-                    'formation_option_id'       => $request->input('formation_option'),
-                    'formation_level_id'        => $request->input('formation_level'),
-                    'state'                     => 1,
+            $formation_participation = FormationParticipation::create([
+                'amount_paid'               => $request->input('amount_paid'),
+                'remaining_amount'          => config('constants.amount.inscription_level-'.$request->input('formation_level')) - $request->input('amount_paid'),
+                'financial_reference'       => $financial_reference,
+                'student_id'                => $student->id,
+                'round_id'                  => $round->id,
+                'payment_mode_id'           => $request->input('payment_mode'),
+                'formation_city_id '        => $request->input('formation_city'),
+                'formation_mode_id'         => $request->input('formation_mode'),
+                'formation_option_id'       => $request->input('formation_option'),
+                'formation_level_id'        => $request->input('formation_level'),
+                'state'                     => 1,
+            ]);
+
+            $round_start_date = Carbon::parse($round->start_date);
+            $round_end_date = Carbon::parse($round->end_date);
+
+            $round_diff = (int)$round_start_date->diffInMonths($round_end_date);
+
+            $lost_student_month = (int)$round_start_date->diffInMonths(Carbon::now());
+
+            $number_month_to_paid = $round_diff - $lost_student_month;
+
+            //dd($round_start_date , $round_end_date, $round_diff  , $lost_student_month,  $number_month_to_paid);
+
+            $student_payment = StudentPayment::create([
+                'formation_participation_id'    => $formation_participation->id,
+                'amount_to_paid'                => config('constants.amount.formation_level-'.$round->round_level) * $number_month_to_paid,
+                'number_months'                 => $number_month_to_paid,
+                'student_id'                    => $student->id,
+                'round_id'                      => $round->id,
+            ]);
+
+            for ($i = 0 ; $i <$number_month_to_paid ; $i++ ){
+                StudentBillPayment::create([
+                    'month_number'          => $i + 1,
+                    'month_label'           => Carbon::now()->addMonth($i)->monthName,
+                    'tranche1'              => false,
+                    'tranche2'              => false,
+                    'amount_paid'           => 0,
+                    'remaining_amount'      => config('constants.amount.formation_level-'.$round->round_level),
+                    'student_id'            => $student->id,
+                    'round_id'              => $round->id,
+                    'student_payment_id'    => $student_payment->id,
                 ]);
-
-                $round_start_date = Carbon::parse($round->start_date);
-                $round_end_date = Carbon::parse($round->end_date);
-
-                $round_diff = (int)$round_start_date->diffInMonths($round_end_date);
-
-                $lost_student_month = (int)$round_start_date->diffInMonths(Carbon::now());
-
-                $number_month_to_paid = $round_diff - $lost_student_month;
-
-                //dd($round_start_date , $round_end_date, $round_diff  , $lost_student_month,  $number_month_to_paid);
-
-                $student_payment = StudentPayment::create([
-                    'formation_participation_id'    => $formation_participation->id,
-                    'amount_to_paid'                => config('constants.amount.formation_level-'.$round->round_level) * $number_month_to_paid,
-                    'number_months'                 => $number_month_to_paid,
-                    'student_id'                    => $student->id,
-                    'round_id'                      => $round->id,
-                ]);
-
-                for ($i = 0 ; $i <$number_month_to_paid ; $i++ ){
-                    StudentBillPayment::create([
-                        'month_number'          => $i + 1,
-                        'month_label'           => Carbon::now()->addMonth($i)->monthName,
-                        'tranche1'              => false,
-                        'tranche2'              => false,
-                        'amount_paid'           => 0,
-                        'remaining_amount'      => config('constants.amount.formation_level-'.$round->round_level),
-                        'student_id'            => $student->id,
-                        'round_id'              => $round->id,
-                        'student_payment_id'    => $student_payment->id,
-                    ]);
-                }
+            }
 
             DB::commit();
         }catch (\Exception $exception){

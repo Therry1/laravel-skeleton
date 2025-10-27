@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\FormationLevel;
+use App\Models\FormationParticipation;
 use App\Models\FormationRound;
 use App\Models\FormationYear;
 use Carbon\Carbon;
-use Carbon\Exceptions\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -77,7 +78,7 @@ class SystemController extends Controller
         if ($level_id == 1){
             $end_date = Carbon::now()->addMonth(3);
         }else{
-            $end_date = Carbon::now()->addMonth(7);
+            $end_date = Carbon::now()->addMonth($request->input('round_runtime') ?? 7);
         }
 
         try {
@@ -97,5 +98,21 @@ class SystemController extends Controller
         }
 
         return response()->json(['status_code'=>200,'message'=> 'Nouvelle formation créé']);
+    }
+
+    public function viewRound($round_id){
+
+        $round = FormationRound::findOrFail($round_id);
+
+        $participations = FormationParticipation::with([
+            'student',
+        ])->where([
+            'round_id' => $round_id
+        ])->get();
+
+        return view(
+            'administration.round_formation_views.round_formation_detail',
+            compact('round_id','round','participations')
+        );
     }
 }

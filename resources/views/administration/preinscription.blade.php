@@ -1,8 +1,8 @@
-@extends('../layouts/template_customer')
+@extends('../layouts/template_admin')
 
 @section('title')  Enregistrement    @endsection
 
-@section('css-content')
+@section('other-css')
 
     <style>
         .inscription-container{
@@ -23,7 +23,7 @@
                 <div class="row">
 
                     <div class="row">
-                        <form action="{{route('student.preinscription.store')}}" id="subscription_form" method="POST">
+                        <form action="{{route('system.admin.student.pre_inscription.store')}}" id="subscription_form" method="POST">
                             @csrf
                             @method('post')
 
@@ -55,7 +55,7 @@
                                             </select>
                                             <div class="text-danger small d-none" id="city_residence_error">Ce champ est requis</div>
                                             @error('city_residence')
-                                                <span class="text-danger small">{{$message}}</span>
+                                            <span class="text-danger small">{{$message}}</span>
                                             @enderror
                                         </div>
                                         <div class="col-md-6 col-sm-12 mt-3">
@@ -200,14 +200,17 @@
         </div>
     </div>
 @endsection
-@section('js-content')
+@section('other-js')
     <script>
         $(document).ready(function (){
-
             $('.select2').select2({
-                width: '100%',
-                allowClear: true,
-                dropdownParent: $('#subscription_form'),
+                width: "100%",
+                allowClear: true
+            })
+
+            $('#city_residence').select2({
+                width: "100%",
+                allowClear: true
             });
 
             $('#formation_level').on('change', function (){
@@ -227,7 +230,7 @@
                 empty_level.addClass('d-none');
 
                 $.ajax({
-                    url: '{{route('student.inscription.check.round',':level_id')}}'.replace(':level_id',level_formation_id),
+                    url: '{{route('system.admin.student.inscription.check.round',':level_id')}}'.replace(':level_id',level_formation_id),
                     type : 'GET',
                     success: function (response){
                         if (response.status_code === 200){

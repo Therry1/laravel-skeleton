@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>@yield('title')</title>
 
     <link rel="stylesheet" href="{{ asset('v2/css/boxicons.css') }}"/>
@@ -92,7 +93,8 @@
                         <li class="nav-item"><a href="{{route('user.profile.view')}}" class="nav-link text-white"><i class="fa fa-user-circle mx-1"></i>Profil</a></li>
                         <li class="nav-item"><a href="{{route('user.register.view')}}" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-circle-right mx-1"></i>Permissions</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>Faire une inscription</a></li>
+                        <li class="nav-item"><a href="{{route('system.admin.student.view.pre_inscription')}}" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>pré-inscription</a></li>
+                        <li class="nav-item"><a href="{{route('system.admin.student.formation.participation')}}" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>S'inscrire à une forma.</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-money-bill mx-1"></i>Effectuer un paiement</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-user-group mx-1"></i>Liste des étudiants</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-search mx-1"></i>Rechercher</a></li>
@@ -120,40 +122,40 @@
         </div>
 
 
-    <script src="{{ asset('v2/js/jquery.js') }}"></script>
-    <script src="{{ asset('v2/js/popper.js') }}"></script>
-    <script src="{{ asset('v2/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('v2/js/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('v2/js/hammer.js') }}"></script>
-    <script src="{{ asset('v2/js/i18n.js') }}"></script>
-    <script src="{{ asset('v2/js/typeahead.js') }}"></script>
-    <script src="{{ asset('v2/js/menu.js') }}"></script>
+        <script src="{{ asset('v2/js/jquery.js') }}"></script>
+        <script src="{{ asset('v2/js/popper.js') }}"></script>
+        <script src="{{ asset('v2/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('v2/js/perfect-scrollbar.js') }}"></script>
+        <script src="{{ asset('v2/js/hammer.js') }}"></script>
+        <script src="{{ asset('v2/js/i18n.js') }}"></script>
+        <script src="{{ asset('v2/js/typeahead.js') }}"></script>
+        <script src="{{ asset('v2/js/menu.js') }}"></script>
 
-    <!-- endbuild -->
+        <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('v2/js/moment.js') }}"></script>
-    {{--<script src="{{ asset('v2/js/datatables-bootstrap5.js') }}"></script>--}}
-    <script src="{{ asset('v2/js/printThis.js') }}"></script>
-    <script src="{{ asset('v2/js/datatables-exports.min.js') }}"></script>
-    <script src="{{ asset('v2/js/select2.js') }}"></script>
-    <script src="{{ asset('v2/js/popular.js') }}"></script>
-    <script src="{{ asset('v2/js/flatpickr.js') }}"></script>
-    <script src="{{ asset('v2/js/flatpickr-fr.js') }}"></script>
-    <script src="{{ asset('v2/js/typeahead.js') }}"></script>
-    <script src="{{ asset('v2/js/tagify.js') }}"></script>
-    <script src="{{ asset('v2/js/bootstrap5.js') }}"></script>
-    <script src="{{ asset('v2/js/auto-focus.js') }}"></script>
-    <script src="{{ asset('v2/js/cleave.js') }}"></script>
-    <script src="{{ asset('v2/js/cleave-phone.js') }}"></script>
-    <script src="{{ asset('v2/js/toastr.js') }}"></script>
-    <script src="{{ asset('v2/js/jquery.toast.min.js') }}"></script>
-    <script src="{{ asset('v2/js/sweetalert2.js') }}"></script>
-    <!-- Main JS -->
-    <script src="{{ asset('v2/js/main.js') }}"></script>
-    <script src="{{ asset('v2/js/utils.js') }}"></script>
-    <script src="{{ asset('v2/js/customtoast.js') }}"></script>
-    <script src="{{ asset('v2/js/custom-sweetalert2.js') }}"></script>
+        <!-- Vendors JS -->
+        <script src="{{ asset('v2/js/moment.js') }}"></script>
+        {{--<script src="{{ asset('v2/js/datatables-bootstrap5.js') }}"></script>--}}
+        <script src="{{ asset('v2/js/printThis.js') }}"></script>
+        <script src="{{ asset('v2/js/datatables-exports.min.js') }}"></script>
+        <script src="{{ asset('v2/js/select2.js') }}"></script>
+        <script src="{{ asset('v2/js/popular.js') }}"></script>
+        <script src="{{ asset('v2/js/flatpickr.js') }}"></script>
+        <script src="{{ asset('v2/js/flatpickr-fr.js') }}"></script>
+        <script src="{{ asset('v2/js/typeahead.js') }}"></script>
+        <script src="{{ asset('v2/js/tagify.js') }}"></script>
+        <script src="{{ asset('v2/js/bootstrap5.js') }}"></script>
+        <script src="{{ asset('v2/js/auto-focus.js') }}"></script>
+        <script src="{{ asset('v2/js/cleave.js') }}"></script>
+        <script src="{{ asset('v2/js/cleave-phone.js') }}"></script>
+        <script src="{{ asset('v2/js/toastr.js') }}"></script>
+        <script src="{{ asset('v2/js/jquery.toast.min.js') }}"></script>
+        <script src="{{ asset('v2/js/sweetalert2.js') }}"></script>
+        <!-- Main JS -->
+        <script src="{{ asset('v2/js/main.js') }}"></script>
+        <script src="{{ asset('v2/js/utils.js') }}"></script>
+        <script src="{{ asset('v2/js/customtoast.js') }}"></script>
+        <script src="{{ asset('v2/js/custom-sweetalert2.js') }}"></script>
 
     <script>
         const toggleBtn = document.getElementById('toggleBtn');

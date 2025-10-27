@@ -52,12 +52,17 @@
                         <div class="col-12 mt-3">
                             <label class="form-label"> Niveau de formation <span class="text-danger fw-bolder">*</span>:</label>
                             <select name="" id="formation_level" class="form-control select2" style="">
-                                <option value="" selected>Choisir un iveau de formation</option>
+                                <option value="" selected>Choisir un niveau de formation</option>
                                 @foreach($formation_levels as $level)
                                     <option value="{{$level->id}}">{{$level->level_label}}</option>
                                 @endforeach
                             </select>
                             <div class="text-danger small d-none" id="formation_level_error">Ce champ est requis</div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <label class="form-label"> Nombre de mois <span class="text-danger fw-bolder">*</span>:</label>
+                            <input type="number" class="form-control" id="round_runtime" placeholder="3">
+                            <div class="text-danger small d-none" id="round_runtime_error">Ce champ est requis</div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +113,7 @@
                         </a>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <a href="#" class="year-option-link">
+                        <a href="{{route('system.home.page.view')}}" class="year-option-link">
                             <div class="year-option-card" style="background-color: #5bb1e5">
                                 <div class="text-center">
                                     <div><i class="fa fa-rotate-back mx-1 fa-3x"></i></div>
@@ -152,7 +157,7 @@
                                         <td class="text-center fw-bolder">{{$round->round_label}}</td>
                                         <td class="text-center fw-bolder">{{$round->round_level}}</td>
                                         <td class="text-center {{$round->state == 1 ? 'text-success': 'text-warning'}}  fw-bolder"> {{$round->state == 1 ? 'Encours': 'Terminé'}}</td>
-                                        <td class="text-center text-info fw-bolder"><a href="#"><i class="fa fa-folder-open"></i></a></td>
+                                        <td class="text-center text-info fw-bolder"><a href="{{route('system.admin.round.view',$round->id)}}"><i class="fa fa-folder-open"></i></a></td>
                                     </tr>
                                     {{$i++}}
                                 @endforeach
@@ -221,18 +226,27 @@
             $('#new-round-btn').on('click', function (e){
 
                 e.preventDefault();
+                const round_runtime = $('#round_runtime');
                 const formation_level = $('#formation_level');
-                const error = $('#formation_level_error');
+
+                const formation_level_error = $('#formation_level_error');
+                const round_runtime_error = $('#round_runtime_error');
 
                 const loader = $('#loader');
                 const body_new_round = $('#body_new_round');
 
                 if (formation_level.val().toString() === ""){
-                    error.removeClass('d-none');
+                    formation_level_error.removeClass('d-none');
+                    return;
+                }
+                if (round_runtime.val().toString() === ""){
+                    round_runtime_error.removeClass('d-none');
                     return;
                 }
 
-                error.addClass('d-none');
+                formation_level_error.addClass('d-none');
+                round_runtime_error.addClass('d-none');
+
 
                 loader.removeClass('d-none');
                 body_new_round.addClass('d-none');
@@ -246,7 +260,8 @@
                         'Content-Type' : 'application/json'
                     },
                     data: JSON.stringify({
-                        'round_level' : formation_level.val()
+                        'round_level' : formation_level.val(),
+                        'round_runtime' : parseInt(round_runtime.val())
                     }),
                     success: function (response){
                         if (response.status_code === 200){

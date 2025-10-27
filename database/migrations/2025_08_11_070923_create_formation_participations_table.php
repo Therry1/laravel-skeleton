@@ -9,6 +9,8 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    // table permettant de s'inscrire à une formation pour pouvoir commancer les cours
     public function up(): void
     {
         Schema::create('formation_participations', function (Blueprint $table) {
@@ -22,11 +24,12 @@ return new class extends Migration
             $table->foreignId('formation_mode_id')->constrained('formation_modes');
             $table->foreignId('formation_option_id')->constrained('formation_options');
             $table->foreignId('formation_level_id')->constrained('formation_levels');
-            $table->foreignId('formation_city_id')->constrained('formation_cities');
+            $table->foreignId('formation_city_id')->nullable()->constrained('formation_cities');
             $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

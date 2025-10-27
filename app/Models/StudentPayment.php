@@ -13,6 +13,11 @@ class StudentPayment extends Model
         return $this->belongsTo(Student::class,'student_id');
     }
 
+    public function billPayments()
+    {
+        return $this->hasMany(StudentBillPayment::class, 'student_payment_id');
+    }
+
     public function formationRound (){
         return $this->belongsTo(FormationRound::class,'round_id');
     }

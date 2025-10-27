@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FormationLevel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +12,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('services/home');
+        $formation_levels = FormationLevel::all();
+        return view('services/home', compact('formation_levels'));
     }
 
     public function returnContactPage(){
