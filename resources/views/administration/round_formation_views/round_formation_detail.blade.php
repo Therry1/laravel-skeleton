@@ -86,7 +86,7 @@
                                         <th class="text-center">Matricule De l'étudiant</th>
                                         <th class="text-center">Nom et prénom</th>
                                         <th class="text-center">Niveau du tour</th>
-                                        <th class="text-center">Statut du paiement</th>
+                                        <th class="text-center">Option du cours</th>
                                         <th class="text-center">Option de l'etu.</th>
                                     </tr>
                                     </thead>
@@ -106,8 +106,13 @@
                                                 <td class="text-center text-success">{{$participation->student->matricule}}</td>
                                                 <td class="text-center fw-bolder">{{$participation->student->name}}</td>
                                                 <td class="text-center text-info fw-bolder">{{$round->round_level}}</td>
-                                                <td class="text-center text-warning fw-bolder"> xxx </td>
-                                                <td class="text-center text-info fw-bolder"><a href="{{route('system.admin.round.view',$round->id)}}"><i class="fa fa-folder-open"></i></a></td>
+                                                <td class="text-center text-warning fw-bolder"> {{$participation->formationOption->option_label}} </td>
+                                                <td class="text-center text-info fw-bolder"><a href="{{Route('system.admin.student.view',[
+                                                        'student_id'=>$participation->student->id,
+                                                        'round_id'=>$round->id,
+                                                        'participation_id'=>$participation->id,
+
+                                                    ])}}"><i class="fa fa-folder-open"></i></a></td>
                                             </tr>
                                             {{$i++}}
                                         @endforeach

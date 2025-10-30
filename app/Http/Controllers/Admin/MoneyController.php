@@ -17,6 +17,7 @@ class MoneyController extends Controller
         return true;
     }
 
+    // verifier si l'etudiant est préinscrit a fin de l iscrire à une formation
     public function checkStudentForPayment (Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -97,5 +98,25 @@ class MoneyController extends Controller
             'formation_participation'=>$student_formation_participation
         ],200);
 
+    }
+
+    // verifier l'appartenance de l'etudiant à la formation et au roud qu'il souhaite payer (lors du paiement d'un mois de formation)
+    public function adminCheckStudentForPayment(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'identifier'        => 'required',
+            'password'          => 'required',
+            'email'             => 'required|email',
+            'formation_level'   => 'required|int',
+
+        ],[
+            'identifier.required'   => 'le matricule est requis',
+            'identifier.digits'     => 'le matricule est invalide',
+            'password.required'     => 'le mot de passe est requis',
+            'email.required'        => 'l\'email est requis',
+            'email.email'           => 'l\'email n\'est pas conforme',
+            'formation_level.required'  => 'le niveau de formation est requis',
+            'formation_level.int'       => 'le niveau envoyé n\'existe pas',
+        ]);
     }
 }

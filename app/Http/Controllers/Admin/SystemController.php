@@ -7,6 +7,9 @@ use App\Models\FormationLevel;
 use App\Models\FormationParticipation;
 use App\Models\FormationRound;
 use App\Models\FormationYear;
+use App\Models\Student;
+use App\Models\StudentBillPayment;
+use App\Models\StudentPayment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -106,6 +109,7 @@ class SystemController extends Controller
 
         $participations = FormationParticipation::with([
             'student',
+            'formationOption'
         ])->where([
             'round_id' => $round_id
         ])->get();
@@ -113,6 +117,28 @@ class SystemController extends Controller
         return view(
             'administration.round_formation_views.round_formation_detail',
             compact('round_id','round','participations')
+        );
+    }
+
+    public function viewStudent($student_id , $round_id , $participation_id){
+
+        $student = Student::findOrFail($student_id);
+        $round = FormationRound::findOrFail($round_id);
+        $student_payment = StudentPayment::with([
+            'billPayments'
+        ])->where([
+            'round_id'      => $round->id,
+            'student_id'    => $student->id,
+        ])->firstOrFail();
+
+        return view(
+            'administration.round_formation_views.student_detail',
+            compact(
+                'student',
+                'round',
+                'participation_id',
+                'student_payment'
+            )
         );
     }
 }

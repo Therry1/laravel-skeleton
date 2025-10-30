@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/new-year',[SystemController::class,'addYear'])->name('year.admin.new');
         Route::post('/new-round',[SystemController::class,'addRound'])->name('round.admin.new');
         Route::get('/view-round/{round_id}',[SystemController::class,'viewRound'])->name('system.admin.round.view');
+        Route::get('/view-student/{student_id}/{round_id}/{participation_id}',[SystemController::class,'viewStudent'])->name('system.admin.student.view');
 
 
 
@@ -59,7 +60,14 @@ Route::middleware(['auth'])->group(function (){
             Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[AdminStudentController::class,'setBadge']);
             Route::post('/payment/check-student-exists/',[AdminStudentController::class,'checkStudentForPayment'])->name('system.admin.student.student.check.exist');
 
+            Route::prefix('/payment')->group(function (){
+                Route::get('/check-student', [MoneyController::class , 'adminCheckStudentForPayment'])->name('system.admin.student.check.for.payment');
+            });
+
+
         });
+
+
     });
 
 });
