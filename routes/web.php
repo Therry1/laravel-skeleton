@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class , 'index'])->name('system.home.page.view');
 Route::get('/contact', [HomeController::class , 'returnContactPage'])->name('system.contact.view');
 
-
 Route::prefix('/user')->group(function (){
     Route::get('/login', [UserController::class , 'loginView'])->name('login');
     Route::get('/register', [UserController::class , 'registerView'])->name('user.register.view');
@@ -30,7 +29,6 @@ Route::prefix('/student')->group(function (){
     Route::post('/formation-student-registration',[StudentController::class,'formationStudentRegistration'])->name('formation.student.registration');
     Route::get('/set-badge/{student_id}/{round_id}/{participation_id}',[StudentController::class,'setBadge']);
     Route::post('/payment/check-student-exists/',[MoneyController::class,'checkStudentForPayment'])->name('payment.student.check.exist');
-
 
 });
 
@@ -63,11 +61,7 @@ Route::middleware(['auth'])->group(function (){
             Route::prefix('/payment')->group(function (){
                 Route::get('/check-student', [MoneyController::class , 'adminCheckStudentForPayment'])->name('system.admin.student.check.for.payment');
             });
-
-
         });
-
-
     });
 
 });
