@@ -93,6 +93,11 @@
                         <td style="font-weight: bolder; width: 45%">RESTE A PAYER</td>
                         <td style="text-align: center">{{$student->remaining_amount}}</td>
                     </tr>
+                    <tr>
+                        <td style="font-weight: bolder; width: 10%">9</td>
+                        <td style="font-weight: bolder; width: 45%">PARRAIN</td>
+                        <td style="text-align: center">{{$guid_parent ? $guid_parent->name : 'N/A'}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

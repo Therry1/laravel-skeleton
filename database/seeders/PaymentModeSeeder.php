@@ -15,7 +15,7 @@ class PaymentModeSeeder extends Seeder
     {
         $modes = [
             ['mean_payment_name'=> 'Direct', 'code'=>'DM', 'state'=>1],
-            ['mean_payment_name'=> 'Orange Money', 'code'=>'OM', 'state'=>1],
+            ['mean_payment_name'=> 'Orange Money', 'code'   =>'OM', 'state'=>1],
             ['mean_payment_name'=> 'Mobile Money', 'code'=>'MOMO', 'state'=>1]
         ];
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('amount_paid');
             $table->integer('remaining_amount');
             $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('payer_id')->nullable()->constrained('users');
             $table->foreignId('student_payment_id')->constrained('student_payments');
             $table->foreignId('round_id')->constrained('formation_rounds');
             $table->tinyInteger('state')->default(1);

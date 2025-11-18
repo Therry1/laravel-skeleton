@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('matricule',15)->unique();
             $table->string('name',128);
-            $table->string('email')->unique();
+            $table->string('email')->unique(); 
             $table->string('password');
             $table->integer('call_phone_number');
             $table->integer('whatsapp_phone_number');
@@ -25,7 +25,9 @@ return new class extends Migration
             $table->integer('amount_paid');
             $table->integer('remaining_amount');
             $table->string('school_sector',64);
+            $table->integer('guid_parent_id')->nullable();
             $table->string('financial_reference', 20)->nullable();
+            $table->foreignId('register_by')->nullable()->constrained('users');
             $table->foreignId('residence_city_id')->constrained('cities');
             $table->foreignId('faculty_id')->constrained('school_faculties');
             $table->foreignId('school_level_id')->constrained('school_levels');

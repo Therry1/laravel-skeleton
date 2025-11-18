@@ -6,6 +6,12 @@
             'down'=>16
         ],
 
+        'payment_mode'=>[
+            'direct'=> 'DM',
+            'orange_money'=>'OM',
+            'mobile_money'=>'MOMO'
+        ],
+
         'amount' => [
             'pre-inscription'       => 1000,
             'inscription_level-1'   => 1000,
