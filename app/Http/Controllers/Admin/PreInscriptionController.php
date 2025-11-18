@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Student;
 use App\Models\FormationCity;
 use App\Models\SchoolFaculty;
 use App\Models\SchoolLevel;
@@ -23,14 +24,16 @@ class PreInscriptionController extends Controller
         $formation_options = FormationOption::all();
         $formation_levels = FormationLevel::all();
         $payment_modes = PaymentMode::all();
+        $students       = Student::all();
 
         return view('administration.preinscription', compact(
-            'cities',
+                'cities',
                 'formation_cities',
                 'school_faculties',
                 'school_levels','formation_options',
                 'formation_levels',
-                'payment_modes'
+                'payment_modes',
+                'students'
             )
         );
     }

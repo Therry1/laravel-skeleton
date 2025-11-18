@@ -126,7 +126,7 @@
                                         <i class="fa fa-mobile-android fa-2x" style="color: orangered"></i>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-12 mt-3">
+                                        <div class="col-md-3 col-sm-12 mt-3">
                                             <label class="form-label"> Numéro de téléphone whatsapp <span class="text-danger fw-bolder">*</span>:</label>
                                             <input type="number" class="form-control" id="whatsapp_number" name="whatsapp_number" placeholder="entrez le numero whatsapp" value="{{old('whatsapp_number')}}">
                                             <div class="text-danger small d-none" id="whatsapp_number_error">Ce champ est requis</div>
@@ -134,7 +134,7 @@
                                             <span class="text-danger small">{{$message}}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 col-sm-12 mt-3">
+                                        <div class="col-md-3 col-sm-12 mt-3">
                                             <label class="form-label"> Numéro de téléphone d'appelle <span class="text-danger fw-bolder">*</span>:</label>
                                             <input type="number" class="form-control" id="phone_number"  name="phone_number" placeholder="entrez le numero de téléphone" value="{{old('phone_number')}}">
                                             <div class="text-danger small d-none" id="phone_number_error">Ce champ est requis</div>
@@ -142,13 +142,22 @@
                                             <span class="text-danger small">{{$message}}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-4 col-sm-12 mt-3">
+                                        <div class="col-md-3 col-sm-12 mt-3">
                                             <label class="form-label"> Numéro de téléphone d'un proche <span class="text-danger fw-bolder">*</span>:</label>
                                             <input type="number" class="form-control" id="relative_number" name="relative_number" placeholder="entrez le numero d'un proche" value="{{old('relative_number')}}">
                                             <div class="text-danger small d-none" id="relative_number_error">Ce champ est requis</div>
                                             @error('relative_number')
                                             <span class="text-danger small">{{$message}}</span>
                                             @enderror
+                                        </div>
+                                        <div class="col-md-3 col-sm-12 mt-3">
+                                            <label class="form-label"> Parainné par <span class="text-danger fw-bolder">*</span>:</label>
+                                            <select name="guid_parent_id" id="guid_parent_id" class="form-select select2">
+                                                <option value="" selected>Sélectionner un parain</option>
+                                                @foreach($students as $student)
+                                                    <option value="{{$student->id}}">{{$student->name ?? 'N/A'}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +172,7 @@
                                             <label class="form-label"> Moyen de paiement <span class="text-danger fw-bolder">*</span>:</label>
                                             <select name="payment_mode" id="payment_mode" class="form-control select2">
                                                 @foreach($payment_modes as $mode)
-                                                    <option value="{{$mode->id}}">{{$mode->mean_payment_name.' ('.$mode->code.')'}}</option>
+                                                    <option value="{{$mode->id}}" data-code="{{$mode->code}}">{{$mode->mean_payment_name.' ('.$mode->code.')'}}</option>
                                                 @endforeach
                                             </select>
                                             <div class="text-danger small d-none" id="payment_mode_error">Ce champ est requis</div>
@@ -230,7 +239,7 @@
                 empty_level.addClass('d-none');
 
                 $.ajax({
-                    url: '{{route('system.admin.student.inscription.check.round',':level_id')}}'.replace(':level_id',level_formation_id),
+                    url: "{{route('system.admin.student.inscription.check.round',':level_id')}}".replace(':level_id',level_formation_id),
                     type : 'GET',
                     success: function (response){
                         if (response.status_code === 200){
@@ -276,7 +285,7 @@
 
                     console.log('la clé :', key , ' la valeur :', element);
 
-                    if (element.value.toString() === ""){
+                    if (element.name.toString() !== "output_account" && element.name.toString() !== "guid_parent_id" && element.value.toString() === ""){
                         cpt_error++;
                         $('#'+element.name+'_error').removeClass('d-none');
                     }else {
@@ -289,7 +298,6 @@
                     return;
 
                 console.log(form_data);
-
                 subscription_form.submit();
 
             })
