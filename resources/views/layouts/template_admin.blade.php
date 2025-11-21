@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>@yield('title')</title>
@@ -70,6 +70,10 @@
         #main-content.full {
             margin-left: 0;
         }
+
+        #toggleBtn{
+            z-index: 9999;
+        }
     </style>
 
     @yield('other-css')
@@ -91,8 +95,24 @@
                     <ul class="nav flex-column">
                         <li class="nav-item"><a href="{{route('system.admin.start')}}" class="nav-link text-white"><i class="fa fa-home-alt mx-1"></i>Accueil</a></li>
                         <li class="nav-item"><a href="{{route('user.profile.view')}}" class="nav-link text-white"><i class="fa fa-user-circle mx-1"></i>Profil</a></li>
-                        <li class="nav-item"><a href="{{route('user.register.view')}}" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-circle-right mx-1"></i>Permissions</a></li>
+                        <?php
+
+                            use App\Models\UserRole;
+                            use Illuminate\Support\Facades\Auth;
+
+                            $user_roles = UserRole::with(['role'])->where(['user_id' => Auth::id() ])->get();
+                            $has_role = false;
+                            foreach ($user_roles as $user_role ){
+                                if ($user_role->role->role_code == 'SUP_ADMIN'){
+                                    $has_role = true;
+                                    break;
+                                }
+                            }
+                        ?>
+                        @if ($has_role)
+                            <li class="nav-item"><a href="{{route('user.register.view')}}" class="nav-link text-white"><i class="fa fa-user-plus mx-1"></i>Ajouter un utilisateur</a></li>
+                        @endif
+                        <li class="nav-item"><a href="{{route('system.admin.permission.view.permission_manager')}}" class="nav-link text-white"><i class="fa fa-circle-right mx-1"></i>Permissions</a></li>
                         <li class="nav-item"><a href="{{route('system.admin.student.view.pre_inscription')}}" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>pré-inscription</a></li>
                         <li class="nav-item"><a href="{{route('system.admin.student.formation.participation')}}" class="nav-link text-white"><i class="fa fa-subscript mx-1"></i>S'inscrire à une forma.</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white"><i class="fa fa-money-bill mx-1"></i>Effectuer un paiement</a></li>
@@ -105,7 +125,7 @@
                 </div>
                 <div class="">
                     <div class="bg-danger text-white text-center fw-bolder">
-                        <a href="#" style="color: white;"> <i class="fa fa-sign-out"></i> Se déconnecter</a>
+                        <a href="{{route('user.logout')}}" style="color: white;"> <i class="fa fa-sign-out"></i> Se déconnecter</a>
                     </div>
                 </div>
 
@@ -114,7 +134,7 @@
             <!-- Contenu principal -->
             <div id="main-content" class="full p-4">
                 <button id="toggleBtn" class="fw-bolder text-white border-white" style="border-radius: 50px; background-color: #1a91da"><i class="fa fa-chevron-right"></i></button>
-                <span style="position: fixed; top: 2% ; right: 2%"><i class="fa fa-user-circle fa-3x mx-1"></i> <span class="text-black fw-bolder border-bottom">Therry</span></span>
+                <span style="position: fixed; top: 1% ; right: 1%; z-index:0"><i class="fa fa-user-circle fa-2x mx-1"></i> <span class="text-black fw-bolder border-bottom">Therry</span></span>
                 <div>
                     @yield('content')
                 </div>
