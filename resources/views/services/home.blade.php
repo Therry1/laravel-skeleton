@@ -371,7 +371,7 @@
             </div>
 
             <div class="modern-computeur-science">
-                <h3 class="text-center sub-title-foramtion" style="margin-bottom: 4%">INFORMATIQUE MODERNE <i class="fa fa-square-plus  mx-2" style="color: orangered"></i></h3>
+                <h3 class="text-center sub-title-foramtion" style="margin-bottom: 4%">INGENIERIE INFORMATIQUE <i class="fa fa-square-plus  mx-2" style="color: orangered"></i></h3>
                 <div class="radio-btn-container my-2">
                     <div class="row">
                         <div class="col-md-4 col-sm-12"></div>
@@ -434,7 +434,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container mx-2 my-5">
+                                        <div class="detail-link-container mx-2 my-4">
                                             <a target="_blank" href="https://openclassrooms.com/fr/paths/1048-administrateur-systemes-reseaux-et-cybersecurite" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -471,7 +471,7 @@
                                                 Les organisations doivent évaluer les risques liés aux cybermenaces, mettre en place des mesures de sécurité appropriées et élaborer des plans de réponse aux incidents pour faire face aux attaques.                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="https://www.fortinet.com/fr/resources/cyberglossary/types-of-cyber-attacks" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -496,14 +496,14 @@
                                             <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-shield-alt mx-1" style="color: orangered"></i></h3>
                                             <div>
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Conception et déploiement:</h4>
-                                                Un plan de déploiement informatique est un ensemble d'opérations coordonnées visant à introduire une application logicielle ou un système dans son environnement prévu. Cela inclut l'installation, la configuration, les tests et les modifications nécessaires pour garantir un déploiement réussi.
+                                                Un plan de déploiement informatique est un ensemble d'opérations coordonnées visant à introduire une application logicielle ou un système dans son environnement prévu.
 
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Maintenance et surveillance:</h4>
                                                 La maintenance et la surveillance des systèmes informatiques regroupent les actions de suivi, de mise à jour et de réparation proactives pour assurer le fonctionnement optimal, la performance et la sécurité du matériel, des logiciels et des réseaux. Le monitoring, ou supervision, permet d'alerter les techniciens en cas d'anomalies détectées 24h/24 et 7j/7, tandis que la maintenance
                                                 préventive inclut des mises à jour, des sauvegardes et des contrôles réguliers pour anticiper et éviter les pannes
                                             </div>
                                         </div>
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -530,17 +530,15 @@
                                             <h3 style="color:#071142; text-decoration: underline">DESCRIPTION <i class="fa fa-shield-alt mx-1" style="color: orangered"></i></h3>
                                             <div>
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Missions du hacker éthique:</h4>
-                                                Le hacking ou piratage éthique décrit l’activité de hacking lorsqu’elle n’est pas malveillante. Ainsi, le piratage éthique désigne le processus par lequel un hacker bienveillant également baptisé “white hat” accède à un réseau ou un système informatique avec les mêmes outils et ressources que son confrère malveillant, “black hat” , à la différence qu’il y est autorisé.
+                                                Ainsi, le piratage éthique désigne le processus par lequel un hacker bienveillant également baptisé “white hat” accède à un réseau ou un système informatique avec les mêmes outils et ressources que son confrère malveillant, “black hat” , à la différence qu’il y est autorisé.
 
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Responsabilités du hacker éthique:</h4>
-                                                S’introduire légalement dans les systèmes et les réseaux d’une entreprise nécessite pour tout hacker éthique qui se respecte de se conformer à un code de conduite et à une discipline stricte. C’est aussi le cas pour pour les Media Exploitation Analysts, qui aident les entreprises et institutions à trouver des preuves dans les nombreux fichiers et logs fournis par les machines.
-
-                                                Avant d’évaluer la sécurité du réseau d’une entreprise, le hacker éthique sera soumis à une procédure d’accréditation scrupuleuse.
+                                                S’introduire légalement dans les systèmes et les réseaux d’une entreprise nécessite pour tout hacker éthique qui se respecte de se conformer à un code de conduite et à une discipline stricte.
 
                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 mb-2">
                                             <a target="_blank" href="" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -576,7 +574,7 @@
                                             <div>
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Développement Front-end:</h4>
 
-                                                Se concentre sur l'interface utilisateur (UI) et l'expérience utilisateur (UX). Les développeurs front-end utilisent des langages tels que HTML, CSS et JavaScript pour créer des pages web visuellement attrayantes et interactives.
+                                                Les développeurs front-end utilisent des langages tels que HTML, CSS et JavaScript pour créer des pages web visuellement attrayantes et interactives.
                                                 <h4 style="font-family: 'Comic Sans MS' ; color: orangered">Développement Back-end:</h4>
 
                                                 S'occupe de la partie invisible du site web, comme les serveurs, les bases de données et la logique applicative. Les développeurs back-end utilisent des langages comme PHP, Python, ou Ruby pour gérer les interactions entre la base de données et l'interface utilisateur.
@@ -585,7 +583,7 @@
                                         </div>
 
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="https://www.digitalschool.paris/guide/developpement-web/definition/" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -618,7 +616,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="https://www.aquilapp.fr/ressources/projet-mobile/quest-ce-que-le-developpement-mobile" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -647,7 +645,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="https://asana.com/fr/resources/it-project-management" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -672,15 +670,14 @@
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Système de gestion de base de données (SGBD):</h4>
                                                 Un logiciel (comme MySQL, Oracle, PostgreSQL) permet d'interagir avec la base de données, d'effectuer des requêtes et de gérer les données.
 
-                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Langage de requête structuré (SQL):</h4>
-                                                Le langage standard pour interagir avec les bases de données relationnelles, permettant d'effectuer des recherches, des mises à jour, etc
-
+                                                <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Langage de requête structuré (SQL):</h4><span>SQL</span>
+                                            
                                                 <h4 style="font-family: 'Comic Sans MS' ;color: orangered">Types de bases de données:</h4>
-                                                Il existe différents types de bases de données, tels que les bases de données relationnelles (SQL), les bases de données NoSQL (clé-valeur, document, etc.), les bases de données spatiales, etc.
+                                                On a les bases de données relationnelles (SQL), les bases de données NoSQL (clé-valeur, document, etc.), les bases de données spatiales, etc.
                                             </div>
                                         </div>
 
-                                        <div class="detail-link-container  mx-2 my-5">
+                                        <div class="detail-link-container  mx-2 my-4">
                                             <a target="_blank" href="https://webusers.i3s.unice.fr/~nlt/cours/licence/sgbd1/sgbd1_cours.pdf" class="detail-link-1">Détail <i class="fa fa-circle-chevron-right mx-1 text-white"></i></a>
                                         </div>
                                     </div>
@@ -701,15 +698,33 @@
                     <div class="title-formation-bar"></div>
                 </div>
                 <div class="text-center py-3" style="font-size: 12px">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cum eveniet ut! Accusamus cum dolorum ea explicabo facilis laboriosam rem rerum vel.
+                    Compile de nos diffents flyers. Sur ces flyers, vous pouvez retrouver les informations sur les differentes formations que nous offrons dans le monde de la Tech
                 </div>
-                <div class="flyer-container" style="background-color: #eac8be;padding: 5% 10%;">
-                    <div class="flyer-container-1">
-                        <a target="_blank" href="{{asset('/images/flyers/flyer6.png')}}">
-                            <img src="{{asset('/images/flyers/flyer6.png')}}" alt="flyer" width="400vw" height="auto">
-                        </a>
-
+                <div class="flyer-container" style="background-color: #eac8be;padding: 5% 5%;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="flyer-container-1">
+                                <a target="_blank" href="{{asset('/images/flyers/flyer6.png')}}">
+                                    <img src="{{asset('/images/flyers/flyer6.png')}}" alt="flyer" width="400vw" height="auto">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flyer-container-1">
+                                <a target="_blank" href="{{asset('/images/flyers/i-tech2.png')}}">
+                                    <img src="{{asset('/images/flyers/i-tech2.png')}}" alt="flyer" width="400vw" height="auto">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flyer-container-1">
+                                <a target="_blank" href="{{asset('/images/flyers/officeSmart2.png')}}">
+                                    <img src="{{asset('/images/flyers/officeSmart2.png')}}" alt="flyer" width="400vw" height="auto">
+                                </a>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 
