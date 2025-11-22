@@ -63,7 +63,7 @@ class UserController extends Controller
                 'role_id'   => 1,
             ]);
 
-            Auth::login($user);
+            //Auth::login($user);
 
             return redirect()->route('system.admin.start');
         }catch (QueryException $exception){
