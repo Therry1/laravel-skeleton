@@ -67,11 +67,6 @@
                         <i class="fa fa-square-plus" style="color: orangered"></i>
                     </div>
                 </div>
-                @auth 
-                    <div class="">
-                        <a href="{{route('user.register.view')}}" class="text-info" style="text-decoration: none;">Créer un utilisateur <i class="fa fa-user-alt"></i></a>
-                    </div>
-                @endauth
             </div>
         </div>
     </div>
