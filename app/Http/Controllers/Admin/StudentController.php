@@ -49,7 +49,7 @@ class StudentController extends Controller
         $nb_students = str_pad($nb_students + 1 , '3','0',STR_PAD_LEFT);
 
         $identifier = 'MAT'.Carbon::now()->format('y').$letters_tab[rand(0,25)].$nb_students.'I-TECH';
-
+        
         try {
             DB::transaction(function () use ($identifier, $request){
                 $student = Student::create([
@@ -70,6 +70,7 @@ class StudentController extends Controller
                     "faculty_id"            => $request->input('school_faculty'),
                     "school_level_id"       => $request->input('school_level'),
                     "payment_mode_id"       => $request->input('payment_mode'),
+                    "guid_parent_id"        => $request->input('guid_parent_id') ?? null,
                     "register_by"           => Auth::id(),
                     "state"                 => 1,
                 ]);
@@ -80,12 +81,15 @@ class StudentController extends Controller
         }
 
         $student = Student::where(['matricule' => $identifier])->first();
+        $guid_parent = Student::where(['id' => $student->guid_parent_id])->first();
+
         $pdf = PDF::loadView('pdfs.information_file',[
-            'student' => $student,
-            'password' => $request->input('password'),
+            'guid_parent'   =>  $guid_parent,
+            'student'       =>  $student,
+            'password'      =>  $request->input('password'),
         ]);
 
-        return $pdf->stream($student->name.'.pdf');
+        return $pdf->stream($student->name.' Preinscription'.'.pdf');
     }
 
     public function checkRound ($level_id){

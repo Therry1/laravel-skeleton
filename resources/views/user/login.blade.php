@@ -6,7 +6,7 @@
 
     <style>
         .login-container{
-            padding: 7% 20%;
+            padding: 7% 15%;
         }
     </style>
 @endsection
@@ -66,9 +66,6 @@
                     <div class="col-md-3 col-sm-12 text-center align-items-center">
                         <i class="fa fa-square-plus" style="color: orangered"></i>
                     </div>
-                </div>
-                <div class="">
-                    <a href="{{route('user.register.view')}}" class="text-info" style="text-decoration: none;">Créer un utilisateur <i class="fa fa-user-alt"></i></a>
                 </div>
             </div>
         </div>

@@ -100,7 +100,7 @@ class MoneyController extends Controller
 
     }
 
-    // verifier l'appartenance de l'etudiant à la formation et au roud qu'il souhaite payer (lors du paiement d'un mois de formation)
+    // verifier l'appartenance de l'etudiant à la formation et au round qu'il souhaite payer (lors du paiement d'un mois de formation)
     public function adminCheckStudentForPayment(Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -108,7 +108,7 @@ class MoneyController extends Controller
             'password'          => 'required',
             'email'             => 'required|email',
             'formation_level'   => 'required|int',
-
+            'round_id'          => 'required|int'
         ],[
             'identifier.required'   => 'le matricule est requis',
             'identifier.digits'     => 'le matricule est invalide',
@@ -117,6 +117,25 @@ class MoneyController extends Controller
             'email.email'           => 'l\'email n\'est pas conforme',
             'formation_level.required'  => 'le niveau de formation est requis',
             'formation_level.int'       => 'le niveau envoyé n\'existe pas',
+            'round_id.required'  => 'le tour de fomation est requi',
+            'round_id.int'       => 'le roun renseigné n eiste pas',
         ]);
+
+        // recherche de l'étudiant dans a table student
+        $student = Student::where([
+            'matricule' => $request->input('identifier'),
+            'password' => $request->input('password'),
+            'email' => $request->input('email'),
+        ])->first();
+
+        // verifier si l'utilisateur qui souhaite faire un paiement existe
+        if (!$student){
+            return response()->json([
+                'status_code' => 404,
+                'message' => 'L\'étudiant recherché est abscent dans notre système'
+            ]);
+        }
+        // recherche de l'étudiant dans la table formation participation
+        
     }
 }

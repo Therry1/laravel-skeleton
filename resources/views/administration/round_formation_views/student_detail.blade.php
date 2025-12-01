@@ -39,7 +39,7 @@
                     <div class="row" id="body_new_round">
                         <div class="col-12 mt-3">
                             <label class="form-label"> entrer le montant versé <span class="text-danger fw-bolder">*</span>:</label>
-                            <input type="number" class="form-control" id="amount_paid" placeholder="2500">
+                            <input type="number" class="form-control" id="amount_paid" placeholder="{{$tranche_amount}} par tranche">
                             <div class="text-danger small d-none" id="amount_paid_error">Ce champ est requis</div>
                         </div>
                         <div class="col-12 mt-3">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\MoneyController;
+use App\Http\Controllers\Admin\permissionController;
+use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\PreInscriptionController;
 use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\HomeController;
@@ -14,9 +16,9 @@ Route::get('/contact', [HomeController::class , 'returnContactPage'])->name('sys
 
 Route::prefix('/user')->group(function (){
     Route::get('/login', [UserController::class , 'loginView'])->name('login');
-    Route::get('/register', [UserController::class , 'registerView'])->name('user.register.view');
+    Route::get('/register', [UserController::class , 'registerView'])->name('user.register.view')->middleware('auth');
     Route::post('/login', [UserController::class , 'login'])->name('user.login.handle');
-    Route::post('/register', [UserController::class , 'register'])->name('user.register.handle');
+    Route::post('/register', [UserController::class , 'register'])->name('user.register.handle')->middleware('auth');
     Route::get('/logout', [UserController::class , 'logout'])->name('user.logout')->middleware('auth');
 });
 
@@ -61,6 +63,10 @@ Route::middleware(['auth'])->group(function (){
             Route::prefix('/payment')->group(function (){
                 Route::get('/check-student', [MoneyController::class , 'adminCheckStudentForPayment'])->name('system.admin.student.check.for.payment');
             });
+        });
+
+        Route::prefix('/permissions')->group(function (){
+            Route::get("/",[PermissionsController::class , 'viewPermissionDashBord'])->name('system.admin.permission.view.permission_manager');
         });
     });
 

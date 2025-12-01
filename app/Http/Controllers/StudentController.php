@@ -267,7 +267,7 @@ class StudentController extends Controller
             'formation_participation' => $formation_participation,
         ])->setPaper('A5', 'landscape');
 
-        return $pdf->stream($formation_participation->student->name.'.pdf');
+        return $pdf->stream($formation_participation->student->name.' Badge'.'.pdf');
         //return view('pdfs.formation_participation_badge');
     }
 }

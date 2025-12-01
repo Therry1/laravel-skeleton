@@ -139,6 +139,6 @@ class SystemController extends Controller
                 'participation_id',
                 'student_payment'
             )
-        );
+        ); 
     }
 }

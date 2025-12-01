@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\PaymentMode;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PreinscriptionRequest extends FormRequest
@@ -21,6 +22,14 @@ class PreinscriptionRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Récupère le mode de paiement envoyé
+        $paymentModeId = $this->input('payment_mode');
+        $paymentMode = PaymentMode::findOrFail($paymentModeId);
+
+        // Détermine si output_account est obligatoire
+        $outputAccountRule = ($paymentMode->code == config('constants.payment_mode.direct'))
+            ? 'nullable'
+            : 'required|digits:9';
         return [
             'password' => 'required',
             'email' => 'required|email|unique:students,email',
@@ -33,7 +42,7 @@ class PreinscriptionRequest extends FormRequest
             "phone_number" => "required|int|digits:9",
             "relative_number" => "required|int|digits:9",
             "payment_mode" => "required|int",
-            "output_account" => "required|int|digits:9",
+            "output_account" => $outputAccountRule,
             "amount_paid" => "required|int|min:1000"
         ];
     }

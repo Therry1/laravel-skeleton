@@ -25,42 +25,35 @@ class UserRolePermissionSeeder extends Seeder
                 'user_name' =>  'therry',
                 'phone' =>  692502488,
                 'email' =>  'therrynganga5@gmail.com',
-                'password' => Hash::make('choisis la vie') ,
-            ],
-            [
-                'name'      =>  'ZEBEDE ORIGA',
-                'user_name' =>  'zebede',
-                'phone'     =>  699338899,
-                'email'     =>  'zebede@gmail.com',
-                'password'  => Hash::make('password') ,
+                'password' => Hash::make('password') ,
             ]
         ];
 
+        $roles = [
+            ['role_label' => 'SUPER ADMINISTRATEUR' , 'role_code' => 'SUP_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'COMPTABLE' , 'role_code' => 'SUB_SUP_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'ADMINISTRATEUR' , 'role_code' => 'ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'SUB ADMINISTRATEUR' , 'role_code' => 'SUB_ADMIN', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'UTILISATEUR' , 'role_code' => 'USER', 'role_category' => 'systeme' , 'state' => 1],
+            ['role_label' => 'ENSEIGNANT' , 'role_code' => 'ENS', 'role_category' => 'proffessionnel' , 'state' => 1],
+        ];
+
+        Role::insert($roles);
+
         $permissions = [
-            ['permission_label' => 'créer un utilisateur', 'permission_code' => 'user.create', 'state' => 1],
-            ['permission_label' => 'créer une nouvelle année', 'permission_code' => 'year.create', 'state' => 1],
-            ['permission_label' => 'créer une vague de formation', 'permission_code' => 'round.create', 'state' => 1],
-            //['permission_label' => 'créer une nouvelle année', 'permission_code' => 'year.create', 'state' => 1],
-            //['permission_label' => 'créer un utilisateur', 'permission_code' => 'user.create', 'state' => 1],
-            //['permission_label' => 'créer une nouvelle année', 'permission_code' => 'year.create', 'state' => 1],
+            ['permission_label' => 'créer un utilisateur' , 'permission_code' => 'user.view.create', 'state' => 1],
+            ['permission_label' => 'enregistrer un utilisateur' , 'permission_code' => 'user.store' , 'state' => 1],
+            ['permission_label' => 'demarer une nouvelle année' , 'permission_code' => 'year.create', 'state' => 1],
+            ['permission_label' => 'demarer une vague de formation' , 'permission_code' => 'formation.round.create','state' => 1],
         ];
 
         $user_role = [
-            ['user_id' => 1, 'role_id' => 1 , 'state' => 1],
-            ['user_id' => 2, 'role_id' => 2 , 'state' => 1],
+            ['user_id' => 1, 'role_id' => 1 , 'state' => 1]
         ];
 
-        $role_permission = [
-            ['role_id' => 1, 'permission_id' => 1 , 'state' => 1],
-            ['role_id' => 1, 'permission_id' => 2 , 'state' => 1],
-            ['role_id' => 1, 'permission_id' => 3 , 'state' => 1],
-
-            ['role_id' => 4 , 'permission_id' => 2 , 'state' => 1],
-        ];
 
         User::insert($user);
         Permission::insert($permissions);
         UserRole::insert($user_role);
-        RoleAsPermission::insert($role_permission);
     }
 }
