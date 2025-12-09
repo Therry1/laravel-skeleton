@@ -130,8 +130,8 @@ class SystemController extends Controller
             'round_id'      => $round->id,
             'student_id'    => $student->id,
         ])->firstOrFail();
-
-        return view(
+        //dd($round);
+        return view( 
             'administration.round_formation_views.student_detail',
             compact(
                 'student',

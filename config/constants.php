@@ -21,4 +21,10 @@
             'formation_level-2'     => 10000,
             'formation_level-3'     => 15000,
         ],
+
+        'payment_raison'=>[
+            'direct'=> 'DM',
+            'orange_money'=>'OM',
+            'mobile_money'=>'MOMO'
+        ],
     ];

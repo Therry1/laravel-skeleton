@@ -221,6 +221,7 @@ class StudentController extends Controller
                     'month_label'           => Carbon::now()->addMonth($i)->monthName,
                     'tranche1'              => false,
                     'tranche2'              => false,
+                    'amount_to_paid'        => config('constants.amount.formation_level-'.$round->round_level),
                     'amount_paid'           => 0,
                     'remaining_amount'      => config('constants.amount.formation_level-'.$round->round_level),
                     'student_id'            => $student->id,
@@ -246,7 +247,9 @@ class StudentController extends Controller
 
     public function setBadge ($student_id , $round_id , $participation_id){
 
-        $formation_participation = FormationParticipation::with(['student','formationRound','formationLevel','formationOption'])->where([
+        $formation_participation = FormationParticipation::with([
+            'student','formationRound','formationLevel','formationOption'
+        ])->where([
             'id'            =>$participation_id,
             'round_id'      =>$round_id,
             'student_id'    =>$student_id,
@@ -262,6 +265,7 @@ class StudentController extends Controller
 
         $pdf = PDF::loadView('pdfs.formation_participation_badge',[
             'formation_participation' => $formation_participation,
+            'objet' => 'Préinscription'
         ])->setPaper('A5', 'landscape');
 
         return $pdf->stream($formation_participation->student->name.'.pdf');

@@ -16,11 +16,12 @@
                     <h5 class="modal-title" id="">Effectuer un paiement <i class="fa fa-money-bill mx-1 text-info"></i></h5>
                 </div>
                 <div class="modal-body" id="detailBody">
-                    <div class="row">
+                    <div class="row"> 
                         <?php
-                            $tranche_amount = $round->round_level = 1 ? 2500 : ($round->round_level = 2 ? 5000 : 7500 );
-                            $month_amount = $round->round_level = 1 ? 5000 : ($round->round_level = 2 ? 10000 : 15000 );
-                        ?>
+                            $level_formation = $round->round_level;
+                            $tranche_amount = $level_formation = 1 ? 2500 : ($level_formation = 2 ? 5000 : 7500 );
+                            $month_amount = $level_formation = 1 ? 5000 : ($level_formation = 2 ? 10000 : 15000 );
+                        ?>  
                         <div class="col-md-4">
                             <span class="fw-bolder">Niveau de formation :</span><span>{{$round->round_level}}</span>
                         </div>
@@ -40,7 +41,7 @@
                         <div class="col-12 mt-3">
                             <label class="form-label"> entrer le montant versé <span class="text-danger fw-bolder">*</span>:</label>
                             <input type="number" class="form-control" id="amount_paid" placeholder="{{$tranche_amount}} par tranche">
-                            <div class="text-danger small d-none" id="amount_paid_error">Ce champ est requis</div>
+                            <div class="text-danger small d-none" id="amount_paid_error"></div>
                         </div>
                         <div class="col-12 mt-3">
                             <label class="form-label"> Matricule <span class="text-danger fw-bolder">*</span>:</label>
@@ -163,13 +164,24 @@
         <input type="text" value="{{$student->id}}" id="student_id">
         <input type="text" value="{{$round->id}}" id="round_id">
         <input type="text" value="{{$student_payment->id}}" id="student_payment_id">
+        <input type="text" value="{{$round->round_level}}" id="round_level">
+        <input type="text" value="{{$participation_id}}" id="participation_id">
         <input type="text" data-state-modal="0" id="state_modal">
     </div>
 @endsection
 @section('other-js')
     <script>
         $(document).ready(function (){
-
+            const tab_amount = {
+                'tranche_level_1' : 2500,
+                'tranche_level_2' : 5000,
+                'tranche_level_3' : 7500
+            }
+            
+            // fonction permettant de faire le paiement des fras de formation d'un éudiant
+            // on commence par récupérer les informations de la page qui nous seront utiles.
+            // certaines pour veifier si l'étudiant appartient à la formation qu'il souhaite payer
+            // et d'autre pour initier réellement le paiement
             $('#new-payment-btn').on('click', function (event){
                 event.preventDefault();
                 const amount_paid           = $('#amount_paid').val();
@@ -177,23 +189,88 @@
                 const student_id            = $('#student_id').val();
                 const round_id              = $('#round_id').val();
                 const student_payment_id    = $('#student_payment_id').val();
+                const participation_id      = $('#participation_id').val();
+
+                const round_level        = $('#round_level').val();
+
                 const state_modal           = parseInt($('#state_modal').attr('data-state-modal'));
 
-                let cpt_error = 0;
+                const amount_paid_error = $('#amount_paid_error')
+
+                // recherche des éléments indispensable à l'identification d'un étudiant dans le système
                 if (
-                    student_id === '' ||
-                    round_id === '' ||
-                    student_payment_id === ''
+                    amount_paid.length === 0 
                 ){
-
+                    amount_paid_error.empty().text('Ce champ est requi');
+                    amount_paid_error.removeClass('d-none');
+                    //showCustomSweetAlert("s", 'error');
+                    //console.log();
+                    return;
+                }else{
+                    console.log("****", amount_paid.length)
+                    
+                    amount_paid_error.addClass('d-none');
+                }
+                const tranche_level = "tranche_level_"+round_level
+                const tranche_amount = tab_amount[tranche_level]                
+                if (
+                    amount_paid % tranche_amount != 0
+                ){
+                    console.log("tranche level est :",tranche_amount ,"montant payé:", amount_paid, 'modulo:', amount_paid % tranche_amount ,'roud_level :',round_level)
+                    amount_paid_error.empty().text(amount_paid + 'FCFA ne couvrira pas une des tranches de paiement');
+                    amount_paid_error.removeClass('d-none');
+                    console.log(amount_paid.parseInt)
+                    return;
+                }else{
+                    console.log(amount_paid)
+                    amount_paid_error.addClass('d-none');
                 }
 
-
-                if (state_modal === 0){
-
-
-
+                // costruction du tableau de données à envoyer au backend
+                const payment_data = {
+                    'amount_paid'           : amount_paid,
+                    'student_identifier'    : student_identifier,
+                    'student_id'            : student_id,
+                    'round_id'              : round_id,
+                    'participation_id'      : participation_id,
+                    'student_payment_id'    : student_payment_id
                 }
+
+                console.log("données de paiement:", payment_data);
+                // requete http pour traiter la requete
+                $.ajax({
+                    url : "{{route('system.admin.student.paid_month')}}",
+                    method: 'POST',
+                    data : JSON.stringify(payment_data),
+                    headers : {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    },
+                    success: function (response){
+                        if (response.status_code === 200){
+                            Swal.fire({
+                                text: response.message,
+                                icon: "success"
+                            })
+
+                            setTimeout(function (){
+                                window.location.reload();
+                            },2000);
+                        }else{
+                            Swal.fire({
+                                text: response.message,
+                                icon: "error"
+                            })
+                        }
+                    },
+                    error: function(response){
+                        Swal.fire({
+                            text: response.message,
+                            icon: "error"
+                        })
+                    }
+                })
+
 
             })
 

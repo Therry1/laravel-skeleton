@@ -73,7 +73,7 @@
     <section style="margin-top: 4%; text-align: center">
         <div style="width: 80%; text-align: justify;padding-left: 6%">
             Par le present document, nous attestons que monsieur <span style="font-weight: bolder; text-transform: uppercase">{{$formation_participation->student->name}}</span> est autorisé à
-            entré dans la salle de cours situé à <span style="font-weight: bolder">NGAOUNDERE</span> pour suivre le cours de code <span style="font-weight: bolder">{{$formation_participation->formationRound->round_code}}</span>
+            entré dans la salle de cours situé à <span style="font-weight: bolder">NGAOUNDERE</span> pour suivre le cours de code <span style="font-weight: bolder">{{$formation_participation->formationRound->round_code}}</span>. Objet : <span class="fw-bolder">Préinscrition</span>
         </div>
     </section>
     <section style="margin-top: 4%">
@@ -86,10 +86,7 @@
                     <span>Code du cours :</span><span> {{$formation_participation->formationRound->round_code}}</span>
                 </li>
                 <li>
-                    <span>Niveau du cours :</span><span>{{$formation_participation->formationLevel->level_label}}</span>
-                </li>
-                <li>
-                    <span>Option du cours :</span><span>{{$formation_participation->formationOption->option_label}}</span>
+                    <span>Niveau du cours :</span><span>{{$formation_participation->formationLevel->level_label}}</span> | <span>Option du cours :</span><span>{{$formation_participation->formationOption->option_label}}</span>
                 </li>
                 <li>
                     <span>Matricule de l'etudiant :</span><span> {{$formation_participation->student->matricule}}</span>

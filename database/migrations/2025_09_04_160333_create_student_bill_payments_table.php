@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student_bill_payments', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
             $table->integer('month_number');
             $table->string('month_label');
             $table->boolean('tranche1')->default(false);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('payer_id')->nullable()->constrained('users');
             $table->foreignId('student_payment_id')->constrained('student_payments');
             $table->foreignId('round_id')->constrained('formation_rounds');
-            $table->tinyInteger('state')->default(1);
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
         });
     }

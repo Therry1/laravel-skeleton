@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('number_months');
             $table->foreignId('student_id')->constrained('students');
             $table->foreignId('round_id')->constrained('formation_rounds');
-            $table->tinyInteger('state')->default(1);
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

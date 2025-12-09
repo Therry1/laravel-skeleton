@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/new-round',[SystemController::class,'addRound'])->name('round.admin.new');
         Route::get('/view-round/{round_id}',[SystemController::class,'viewRound'])->name('system.admin.round.view');
         Route::get('/view-student/{student_id}/{round_id}/{participation_id}',[SystemController::class,'viewStudent'])->name('system.admin.student.view');
+        Route::post('/paid-month',[MoneyController::class,'paid_month'])->name('system.admin.student.paid_month');
 
 
 
